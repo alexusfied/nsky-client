@@ -7,7 +7,7 @@ function Chat() {
     const [messages, setMessages] = useState<string[]>([]);
 
     const addMessage = (message: string) => {
-        setMessages([message, ...messages]);
+        setMessages([...messages, message]);
     }
 
     return (
