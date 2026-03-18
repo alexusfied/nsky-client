@@ -1,7 +1,7 @@
-function Message() {
+function Message({content}: {content: string}) {
     return (
         <div>
-            <p>I want you to write a short poem of 8 lines. Use only words that start with the letter p</p>
+            <p>{content}</p>
         </div>
     );
 }
