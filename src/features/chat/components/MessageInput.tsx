@@ -9,12 +9,14 @@ function MessageInput({onMessageSent}: {onMessageSent: (message: string) => void
                 type="text" 
                 className="bg-white rounded-md w-5/6 accent-black p-2"
                 onChange={(e) => {setMessage(e.target.value)}}
+                value={message}
             />
             <button 
                 type="button" 
                 className="outline-solid hover:bg-black hover:text-white cursor-pointer border-black rounded-md p-1"
                 onClick={() => {
                     onMessageSent(message);
+                    setMessage("");
                 }}
             >Send
             </button>
