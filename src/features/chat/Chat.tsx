@@ -7,15 +7,12 @@ import { useSendMessage } from "@/features/chat/hooks/useSendMessage.ts";
 function Chat() {
     const [messages, setMessages] = useState<string[]>([]);
     const {sendMessage, isStreaming, error} = useSendMessage();
-    const [currentResponse, setCurrentResponse] = useState("");
 
-    const streamLlmResponse = (message: string) => {
-        setMessages(prevMessages => [...prevMessages, message]);
-        sendMessage(message, (chunk: string) => {
-            setCurrentResponse(prevPartialResponse => prevPartialResponse + chunk);
+    const streamLlmResponse = async (message: string) => {
+        setMessages(prevMessages => [...prevMessages, message, ""]);
+        await sendMessage(message, (chunk: string) => {
+            setMessages(prevMessages => prevMessages.map((msg, idx) => idx === prevMessages.length - 1 ? msg + chunk : msg));
         });
-        setMessages(prevMessages => [...prevMessages, currentResponse]);
-        setCurrentResponse("");
     }
 
     return (
@@ -24,7 +21,6 @@ function Chat() {
                 {
                     messages.map((message, id) => <Message content={message} key={id}/>)
                 }
-                <Message content={currentResponse}></Message>
             </div>
             <MessageInput onMessageSent={streamLlmResponse}/>
         </section>
