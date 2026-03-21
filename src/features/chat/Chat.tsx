@@ -11,7 +11,11 @@ function Chat() {
     const streamLlmResponse = async (message: string) => {
         setMessages(prevMessages => [...prevMessages, message, ""]);
         await sendMessage(message, (chunk: string) => {
-            setMessages(prevMessages => prevMessages.map((msg, idx) => idx === prevMessages.length - 1 ? msg + chunk : msg));
+            setMessages(prevMessages =>
+                prevMessages.map((msg, idx) =>
+                    idx === prevMessages.length - 1 ? msg + chunk : msg
+                )
+            );
         });
     }
 
