@@ -3,9 +3,11 @@ import type {IChat} from "@/shared/types/IChat.ts";
 import {useState} from "react";
 import ChatList from "@/features/conversations/components/ChatList.tsx";
 import {useLoadChats} from "@/features/conversations/hooks/useLoadChats.ts";
+import useChatStore from "@/shared/store/chatStore.ts";
 
 function Conversations() {
-    const {chats, isLoading, error} = useLoadChats();
+    const {isLoading, error} = useLoadChats();
+    const chats = useChatStore((state) => state.chats);
 
     const [testChats, setTestChats] = useState<IChat[]>([
         {id: 1, title: "Why is the sky blue?"},
