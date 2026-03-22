@@ -4,7 +4,7 @@ function MessageInput({onMessageSent}: {onMessageSent: (message: string) => void
     const [message, setMessage] = useState("");
 
     return (
-        <div className="flex flex-row w-1/2 justify-center absolute left-[42%] top-[90vh] gap-3">
+        <div className="flex flex-row w-1/2 justify-center absolute left-[32%] top-[90vh] gap-3">
             <input 
                 type="text" 
                 className="bg-white rounded-md w-5/6 accent-black p-2"
