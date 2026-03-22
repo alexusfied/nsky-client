@@ -1,7 +1,11 @@
 import { useState } from "react";
+import useChatStore from "@/shared/store/chatStore.ts";
+import {useCreateChat} from "../hooks/useCreateChat.ts";
 
 function MessageInput({onMessageSent}: {onMessageSent: (message: string) => void}) {
     const [message, setMessage] = useState("");
+    const createChat = useCreateChat();
+    const selectedChat = useChatStore((state) => state.selectedChat);
 
     return (
         <div className="flex flex-row w-1/2 justify-center absolute left-[32%] top-[90vh] gap-3">
@@ -15,6 +19,9 @@ function MessageInput({onMessageSent}: {onMessageSent: (message: string) => void
                 type="button" 
                 className="outline-solid hover:bg-black hover:text-white cursor-pointer border-black rounded-md p-1"
                 onClick={() => {
+                    if (selectedChat === null) {
+                        createChat(message);
+                    }
                     onMessageSent(message);
                     setMessage("");
                 }}
