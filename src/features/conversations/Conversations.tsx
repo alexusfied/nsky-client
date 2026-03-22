@@ -11,7 +11,7 @@ function Conversations() {
     ]);
 
     return (
-        <section className="flex bg-black h-screen w-1/4">
+        <section className="flex bg-black h-screen w-1/4 p-4">
             <ChatList chats={chats} />
         </section>
     );
