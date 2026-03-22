@@ -2,9 +2,12 @@ import type {IChat} from "@/shared/types/IChat.ts";
 
 import {useState} from "react";
 import ChatList from "@/features/conversations/components/ChatList.tsx";
+import {useLoadChats} from "@/features/conversations/hooks/useLoadChats.ts";
 
 function Conversations() {
-    const [chats, setChats] = useState<IChat[]>([
+    const {chats, isLoading, error} = useLoadChats();
+
+    const [testChats, setTestChats] = useState<IChat[]>([
         {id: 1, title: "Why is the sky blue?"},
         {id: 2, title: "How is the weather today?"},
         {id: 3, title: "What is the answer to everything?"}
