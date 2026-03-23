@@ -4,8 +4,8 @@ import type {AxiosError} from "axios";
 import {useState} from "react";
 
 export function useCreateChat() {
-    const addChat = useChatStore((state) => state.addChat);
     const [error, setError] = useState<string | null>(null);
+    const addChat = useChatStore((store) => store.addChat);
 
     const createChat = async (title: string) => {
         try {
@@ -13,6 +13,7 @@ export function useCreateChat() {
                 name: title
             });
             addChat({id: response.data.id, title: title});
+            return response.data;
         } catch (error) {
             const err = error as Error | AxiosError;
             setError(err.message);
