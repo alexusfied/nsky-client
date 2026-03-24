@@ -7,8 +7,9 @@ export function useSendMessage() {
     const [isStreaming, setIsStreaming] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const messages = useMessageStore((store) => store.messages);
-    const addMessages = useMessageStore((store) => store.addMessages);
+    const addMessage = useMessageStore((store) => store.addMessage);
     const setMessages = useMessageStore((state) => state.setMessages);
+    const streamMessage = useMessageStore((state) => state.streamMessage);
     const selectedChatId = useChatStore((store) => store.selectedChat);
 
     const sendMessage = async (content: string) => {
@@ -16,21 +17,18 @@ export function useSendMessage() {
         setError(null);
 
         try {
-            addMessages([
-                {role: "user", content: content},
-                {role: "llm", content: ""}
-            ]);
+            addMessage({role: "user", content: content})
+            addMessage({role: "llm", content: ""});
+
+            console.log(messages);
 
             if (selectedChatId === null) throw new Error("Chat id is null");
 
             await streamUserMessage(selectedChatId, content, (chunk) => {
-                setMessages(
-                    messages.map((msg, idx) =>
-                        idx === messages.length ? {role: msg.role, content: msg.content + chunk} : msg
-                    )
-                );
+                streamMessage(chunk);
             });
         } catch (err: any) {
+            console.log(err.message);
             setError(err.message || "Streaming failed");
         } finally {
             setIsStreaming(false);
