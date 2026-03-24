@@ -4,8 +4,8 @@ import type {IMessage} from "@/shared/types/IMessage.ts";
 
 const useMessageStore = create<IMessagesState>((set) => ({
     messages: [],
-    addMessage: (message: IMessage) => { set((state) => ({ messages: [...state.messages, message] })) },
-    setMessages: (messages: IMessage[]) => { set((state) => ({ messages: messages })) }
+    addMessages: (messages: IMessage[]) => { set((state) => ({ messages: [...state.messages, ...messages] })) },
+    setMessages: (messages: IMessage[]) => { set((state) => ({ messages: messages })) },
 }));
 
 export default useMessageStore;

@@ -2,7 +2,7 @@ import type {IMessage} from "@/shared/types/IMessage.ts";
 
 interface IMessagesState {
     messages: IMessage[],
-    addMessage: (message: IMessage) => void,
+    addMessages: (messages: IMessage[]) => void,
     setMessages: (messages: IMessage[]) => void
 }
 
