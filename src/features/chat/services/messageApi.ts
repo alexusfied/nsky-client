@@ -1,5 +1,5 @@
 export async function streamUserMessage(chatId: number, content: string, onChunk: (chunk: string) => void) {
-    const response = await fetch(`http://localhost:8192/api/message/${chatId}/stream`, {
+    const response = await fetch(`http://localhost:8192/api/llm/${chatId}/stream`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
