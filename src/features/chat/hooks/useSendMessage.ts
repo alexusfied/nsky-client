@@ -22,8 +22,6 @@ export function useSendMessage() {
 
             console.log(messages);
 
-            if (selectedChatId === null) throw new Error("Chat id is null");
-
             await streamUserMessage(selectedChatId, content, (chunk) => {
                 streamMessage(chunk);
             });
