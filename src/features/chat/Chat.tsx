@@ -6,7 +6,7 @@ import { useLoadMessagesForChat } from "./hooks/useLoadMessagesForChat.ts";
 
 function Chat() {
 
-    const {isLoadingMessages, errorLoadingMessages, setMessages, messages} = useLoadMessagesForChat();
+    const {isLoadingMessages, errorLoadingMessages, messages} = useLoadMessagesForChat();
     const {sendMessage, isStreaming, error} = useSendMessage();
 
     return (

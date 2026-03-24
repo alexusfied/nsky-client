@@ -35,5 +35,5 @@ export function useLoadMessagesForChat() {
         if (selectedChatId != null) loadMessagesForChat(selectedChatId);
     }, [selectedChatId]);
 
-    return {isLoadingMessages, errorLoadingMessages, setMessages, messages}
+    return {isLoadingMessages, errorLoadingMessages, messages}
 }
