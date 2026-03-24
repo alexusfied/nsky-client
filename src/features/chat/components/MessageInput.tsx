@@ -20,10 +20,6 @@ function MessageInput({onMessageSent}: {onMessageSent: (message: string) => void
                 type="button" 
                 className="outline-solid hover:bg-black hover:text-white cursor-pointer border-black rounded-md p-1"
                 onClick={async () => {
-                    if (selectedChat === null) {
-                        const createdChat = await createChat(message);
-                        setSelectedChat(createdChat.id);
-                    }
                     onMessageSent(message);
                     setMessage("");
                 }}
