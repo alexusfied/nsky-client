@@ -6,23 +6,36 @@ import useChatStore from "@/shared/store/chatStore.ts";
 export function useSendMessage() {
     const [isStreaming, setIsStreaming] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const messages = useMessageStore((store) => store.messages);
-    const addMessage = useMessageStore((store) => store.addMessage);
-    const setMessages = useMessageStore((state) => state.setMessages);
+    const addChat = useChatStore((state) => state.addChat);
+    const addMessages = useMessageStore((store) => store.addMessages);
     const streamMessage = useMessageStore((state) => state.streamMessage);
+    const setSelectedChat = useChatStore((store) => store.setSelectedChat);
     const selectedChatId = useChatStore((store) => store.selectedChat);
+
+    const parseAddedChatId = (chunk: string) => {
+        const chatId = chunk.split(" ")[1];
+
+        if (chatId === undefined) throw new Error("Chat id could not be parsed");
+
+        return Number(chatId);
+    }
 
     const sendMessage = async (content: string) => {
         setIsStreaming(true);
         setError(null);
 
         try {
-            addMessage({role: "user", content: content})
-            addMessage({role: "llm", content: ""});
-
-            console.log(messages);
+            addMessages([{role: "user", content: content}, {role: "llm", content: ""}]);
 
             await streamUserMessage(selectedChatId, content, (chunk) => {
+                if (chunk.startsWith("chatId")) {
+                    if (selectedChatId === null) {
+                        const addedChatId = parseAddedChatId(chunk);
+                        addChat({id: addedChatId, title: content});
+                        setSelectedChat(addedChatId);
+                    }
+                    return;
+                }
                 streamMessage(chunk);
             });
         } catch (err: any) {
