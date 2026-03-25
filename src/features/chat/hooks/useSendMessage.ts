@@ -26,18 +26,22 @@ export function useSendMessage() {
 
         try {
             addMessages([{role: "user", content: content}, {role: "llm", content: ""}]);
+            let newChatId: number | null = null;
 
             await streamUserMessage(selectedChatId, content, (chunk) => {
                 if (chunk.startsWith("chatId")) {
                     if (selectedChatId === null) {
-                        const addedChatId = parseAddedChatId(chunk);
-                        addChat({id: addedChatId, title: content});
-                        setSelectedChat(addedChatId);
+                        newChatId = parseAddedChatId(chunk);
+                        addChat({id: newChatId, title: content});
                     }
                     return;
                 }
                 streamMessage(chunk);
             });
+
+            if (newChatId !== null) {
+                setSelectedChat(newChatId);
+            }
         } catch (err: any) {
             console.log(err.message);
             setError(err.message || "Streaming failed");
