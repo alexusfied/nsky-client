@@ -11,7 +11,7 @@ function Chat() {
 
     return (
         <section className="flex justify-center h-screen w-full bg-primary-variant pl-60 pr-60 pt-4">
-            <div className="flex flex-col gap-4 h-screen w-full">
+            <div className="flex flex-col gap-4 h-screen w-full overflow-scroll">
                 {
                     messages.map((message, id) => <Message content={message.content} type={message.role} key={id}/>)
                 }

@@ -1,3 +1,5 @@
+import Markdown from "react-markdown";
+
 function Message({content, type}: {content: string, type: string}) {
     const userTypeStyles = "justify-end";
     const llmTypeStyles = "";
@@ -5,7 +7,9 @@ function Message({content, type}: {content: string, type: string}) {
 
     return (
         <div className={`${type === "user" ? userTypeStyles : llmTypeStyles} flex w-full`}>
-            <p className={`${type === "user" ? userStyleTextColor : ""} text-white`}>{content}</p>
+            <p className={`${type === "user" ? userStyleTextColor : ""} text-white`}>
+                <Markdown>{content}</Markdown>
+            </p>
         </div>
     );
 }

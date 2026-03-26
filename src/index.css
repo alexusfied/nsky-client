@@ -249,6 +249,9 @@
   .gap-4 {
     gap: calc(var(--spacing) * 4);
   }
+  .overflow-scroll {
+    overflow: scroll;
+  }
   .rounded-md {
     border-radius: var(--radius-md);
   }
