@@ -7,9 +7,9 @@ function Message({content, type}: {content: string, type: string}) {
 
     return (
         <div className={`${type === "user" ? userTypeStyles : llmTypeStyles} flex w-full`}>
-            <p className={`${type === "user" ? userStyleTextColor : ""} text-white`}>
+            <div className={`${type === "user" ? userStyleTextColor : ""} text-white`}>
                 <Markdown>{content}</Markdown>
-            </p>
+            </div>
         </div>
     );
 }

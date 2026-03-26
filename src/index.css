@@ -7,6 +7,7 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+    --color-red-500: oklch(63.7% 0.237 25.331);
     --color-gray-700: oklch(37.3% 0.034 259.733);
     --color-black: #000;
     --color-white: #fff;
@@ -186,14 +187,8 @@
   .flex {
     display: flex;
   }
-  .table {
-    display: table;
-  }
   .h-screen {
     height: 100vh;
-  }
-  .w-1 {
-    width: calc(var(--spacing) * 1);
   }
   .w-1\/2 {
     width: calc(1 / 2 * 100%);
@@ -201,32 +196,14 @@
   .w-1\/4 {
     width: calc(1 / 4 * 100%);
   }
-  .w-4 {
-    width: calc(var(--spacing) * 4);
-  }
-  .w-4\/5 {
-    width: calc(4 / 5 * 100%);
-  }
-  .w-5 {
-    width: calc(var(--spacing) * 5);
-  }
   .w-5\/6 {
     width: calc(5 / 6 * 100%);
   }
   .w-full {
     width: 100%;
   }
-  .border-collapse {
-    border-collapse: collapse;
-  }
   .cursor-pointer {
     cursor: pointer;
-  }
-  .resize {
-    resize: both;
-  }
-  .appearance-none {
-    appearance: none;
   }
   .flex-col {
     flex-direction: column;
@@ -240,9 +217,6 @@
   .justify-end {
     justify-content: flex-end;
   }
-  .justify-start {
-    justify-content: flex-start;
-  }
   .gap-3 {
     gap: calc(var(--spacing) * 3);
   }
@@ -252,21 +226,11 @@
   .overflow-scroll {
     overflow: scroll;
   }
+  .overflow-y-auto {
+    overflow-y: auto;
+  }
   .rounded-md {
     border-radius: var(--radius-md);
-  }
-  .border {
-    border-style: var(--tw-border-style);
-    border-width: 1px;
-  }
-  .border-black {
-    border-color: var(--color-black);
-  }
-  .border-on-primary {
-    border-color: var(--color-on-primary);
-  }
-  .bg-gray-700 {
-    background-color: var(--color-gray-700);
   }
   .bg-primary {
     background-color: var(--color-primary);
@@ -286,38 +250,14 @@
   .pt-4 {
     padding-top: calc(var(--spacing) * 4);
   }
-  .pt-8 {
-    padding-top: calc(var(--spacing) * 8);
-  }
-  .pt-10 {
-    padding-top: calc(var(--spacing) * 10);
-  }
-  .pt-20 {
-    padding-top: calc(var(--spacing) * 20);
-  }
-  .pt-40 {
-    padding-top: calc(var(--spacing) * 40);
-  }
-  .pr-40 {
-    padding-right: calc(var(--spacing) * 40);
-  }
   .pr-60 {
     padding-right: calc(var(--spacing) * 60);
   }
+  .pb-20 {
+    padding-bottom: calc(var(--spacing) * 20);
+  }
   .pb-40 {
     padding-bottom: calc(var(--spacing) * 40);
-  }
-  .pl-2 {
-    padding-left: calc(var(--spacing) * 2);
-  }
-  .pl-8 {
-    padding-left: calc(var(--spacing) * 8);
-  }
-  .pl-20 {
-    padding-left: calc(var(--spacing) * 20);
-  }
-  .pl-40 {
-    padding-left: calc(var(--spacing) * 40);
   }
   .pl-60 {
     padding-left: calc(var(--spacing) * 60);
@@ -325,64 +265,21 @@
   .text-white {
     color: var(--color-white);
   }
-  .underline {
-    text-decoration-line: underline;
-  }
-  .accent-on-primary {
-    accent-color: var(--color-on-primary);
-  }
-  .outline {
-    outline-style: var(--tw-outline-style);
-    outline-width: 1px;
-  }
   .outline-1 {
     outline-style: var(--tw-outline-style);
     outline-width: 1px;
   }
-  .outline-2 {
-    outline-style: var(--tw-outline-style);
-    outline-width: 2px;
-  }
-  .outline-3 {
-    outline-style: var(--tw-outline-style);
-    outline-width: 3px;
-  }
   .outline-on-primary {
     outline-color: var(--color-on-primary);
-  }
-  .outline-primary {
-    outline-color: var(--color-primary);
-  }
-  .outline-white {
-    outline-color: var(--color-white);
   }
   .outline-none {
     --tw-outline-style: none;
     outline-style: none;
   }
-  .outline-solid {
-    --tw-outline-style: solid;
-    outline-style: solid;
-  }
   .hover\:rounded-md {
     &:hover {
       @media (hover: hover) {
         border-radius: var(--radius-md);
-      }
-    }
-  }
-  .hover\:border {
-    &:hover {
-      @media (hover: hover) {
-        border-style: var(--tw-border-style);
-        border-width: 1px;
-      }
-    }
-  }
-  .hover\:bg-black {
-    &:hover {
-      @media (hover: hover) {
-        background-color: var(--color-black);
       }
     }
   }
@@ -407,23 +304,6 @@
       }
     }
   }
-  .hover\:text-white {
-    &:hover {
-      @media (hover: hover) {
-        color: var(--color-white);
-      }
-    }
-  }
-  .focus\:outline-on-primary {
-    &:focus {
-      outline-color: var(--color-on-primary);
-    }
-  }
-}
-@property --tw-border-style {
-  syntax: "*";
-  inherits: false;
-  initial-value: solid;
 }
 @property --tw-outline-style {
   syntax: "*";
@@ -433,7 +313,6 @@
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
-      --tw-border-style: solid;
       --tw-outline-style: solid;
     }
   }
