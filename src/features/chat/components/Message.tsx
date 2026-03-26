@@ -1,7 +1,7 @@
 function Message({content, type}: {content: string, type: string}) {
     const userTypeStyles = "justify-end";
-    const llmTypeStyles = "";
-    const userStyleTextColor = "text-white bg-gray-700 p-4 border rounded-md";
+    const llmTypeStyles = "text-white";
+    const userStyleTextColor = "text-white p-4 rounded-md bg-primary";
 
     return (
         <div className={`${type === "user" ? userTypeStyles : llmTypeStyles} flex w-full`}>

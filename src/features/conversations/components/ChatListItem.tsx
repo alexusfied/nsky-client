@@ -6,7 +6,7 @@ function ChatListItem({content, isSelected, id}: {content: string, isSelected: b
     return (
         <li>
             <button
-                className={`text-white p-2 hover:border hover:rounded-md cursor-pointer ${isSelected ? "border rounded-md" : ""}`}
+                className={`text-white p-2 hover:bg-primary-variant hover:rounded-md cursor-pointer ${isSelected ? "bg-primary-variant" : ""}`}
                 onClick={() => {
                     setSelectedChat(id);
                 }}

@@ -10,7 +10,7 @@ function Chat() {
     const {sendMessage, isStreaming, error} = useSendMessage();
 
     return (
-        <section className="flex justify-center h-screen w-2/3">
+        <section className="flex justify-center h-screen w-full bg-primary-variant">
             <div className="flex flex-col gap-4 w-4/5 h-screen">
                 {
                     messages.map((message, id) => <Message content={message.content} type={message.role} key={id}/>)

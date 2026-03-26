@@ -2,3 +2,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@theme {
+    --color-primary: oklch(0.2211 0.0269 251.57);
+    --color-primary-variant: oklch(0.2804 0.0269 251.57);
+    --color-on-primary: oklch(0.6068 0.118 78.52);
+}
