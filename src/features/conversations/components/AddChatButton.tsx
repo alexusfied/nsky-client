@@ -10,7 +10,7 @@ function AddChatButton() {
         }}>
             <div className="flex gap-2 p-2">
                 <CirclePlus />
-                <p className="">Neuer Chat</p>
+                <p className="">New Chat</p>
             </div>
         </button>
     );
