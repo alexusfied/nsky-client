@@ -3,7 +3,7 @@ import type {IChat} from "@/shared/types/IChat.ts";
 interface IChatState {
     chats: IChat[],
     selectedChat: number | null,
-    setSelectedChat: (id: number) => void,
+    setSelectedChat: (id: number | null) => void,
     addChat: (chat: IChat) => void,
     setChats: (chats: IChat[]) => void
 }

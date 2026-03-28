@@ -31,8 +31,12 @@ export function useLoadMessagesForChat() {
     }
 
     useEffect(() => {
-        console.log(selectedChatId);
-        if (selectedChatId != null) loadMessagesForChat(selectedChatId);
+        if (selectedChatId != null) {
+            loadMessagesForChat(selectedChatId);
+        } else {
+            setMessages([]);
+        }
+
     }, [selectedChatId]);
 
     return {isLoadingMessages, errorLoadingMessages, messages}
