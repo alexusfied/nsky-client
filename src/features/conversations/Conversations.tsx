@@ -4,6 +4,7 @@ import {useState} from "react";
 import ChatList from "@/features/conversations/components/ChatList.tsx";
 import {useLoadChats} from "@/features/conversations/hooks/useLoadChats.ts";
 import useChatStore from "@/shared/store/chatStore.ts";
+import ActionsBar from "@/features/conversations/components/ActionsBar.tsx";
 
 function Conversations() {
     const {isLoading, error} = useLoadChats();
@@ -16,7 +17,8 @@ function Conversations() {
     ]);
 
     return (
-        <section className="flex bg-primary h-screen w-1/4 p-4">
+        <section className="flex flex-col bg-primary h-screen w-1/4 p-4 gap-8">
+            <ActionsBar />
             <ChatList chats={chats} />
         </section>
     );

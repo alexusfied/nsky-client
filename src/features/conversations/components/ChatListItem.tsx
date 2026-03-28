@@ -5,14 +5,16 @@ function ChatListItem({content, isSelected, id}: {content: string, isSelected: b
 
     return (
         <li>
-            <button
-                className={`text-white p-2 w-full hover:bg-primary-variant hover:rounded-md cursor-pointer ${isSelected ? "bg-primary-variant" : ""}`}
-                onClick={() => {
-                    setSelectedChat(id);
-                }}
-            >
-                {content}
-            </button>
+            <div className={`flex justify-start w-full hover:bg-primary-variant hover:rounded-md cursor-pointer ${isSelected ? "bg-primary-variant" : ""}`}>
+                <button
+                    className={`text-white p-2 cursor-pointer`}
+                    onClick={() => {
+                        setSelectedChat(id);
+                    }}
+                >
+                    {content}
+                </button>
+            </div>
         </li>
     );
 }
