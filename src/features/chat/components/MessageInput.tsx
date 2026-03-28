@@ -14,7 +14,7 @@ function MessageInput({onMessageSent}: {onMessageSent: (message: string) => void
             />
             <button 
                 type="button" 
-                className="text-on-primary cursor-pointer rounded-md p-1 hover:bg-on-primary hover:text-primary"
+                className="text-on-primary cursor-pointer rounded-md p-1 hover:bg-on-primary hover:text-primary relative -left-11"
                 onClick={async () => {
                     onMessageSent(message);
                     setMessage("");
