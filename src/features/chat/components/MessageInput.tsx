@@ -1,7 +1,4 @@
 import { useState } from "react";
-import useChatStore from "@/shared/store/chatStore.ts";
-import {useCreateChat} from "../hooks/useCreateChat.ts";
-import {useSelectedChat} from "@/shared/hooks/useSelectedChat.ts";
 import {SendHorizonal} from "lucide-react";
 
 function MessageInput({onMessageSent}: {onMessageSent: (message: string) => void}) {
