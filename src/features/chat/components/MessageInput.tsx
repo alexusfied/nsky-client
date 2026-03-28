@@ -2,6 +2,7 @@ import { useState } from "react";
 import useChatStore from "@/shared/store/chatStore.ts";
 import {useCreateChat} from "../hooks/useCreateChat.ts";
 import {useSelectedChat} from "@/shared/hooks/useSelectedChat.ts";
+import {SendHorizonal} from "lucide-react";
 
 function MessageInput({onMessageSent}: {onMessageSent: (message: string) => void}) {
     const [message, setMessage] = useState("");
@@ -16,12 +17,13 @@ function MessageInput({onMessageSent}: {onMessageSent: (message: string) => void
             />
             <button 
                 type="button" 
-                className="outline-1 outline-on-primary cursor-pointer rounded-md p-1 text-white hover:bg-on-primary hover:text-primary"
+                className="text-on-primary cursor-pointer rounded-md p-1 hover:bg-on-primary hover:text-primary"
                 onClick={async () => {
                     onMessageSent(message);
                     setMessage("");
                 }}
-            >Send
+            >
+                <SendHorizonal />
             </button>
         </div>
     );
