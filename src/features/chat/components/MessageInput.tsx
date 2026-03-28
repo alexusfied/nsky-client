@@ -19,6 +19,8 @@ function MessageInput({onMessageSent}: {onMessageSent: (message: string) => void
                 onKeyDown={(e) => {
                     if (e.key === "Enter") handleMessageSent();
                 }}
+                placeholder="Send a message..."
+                autoFocus={true}
             />
             <button 
                 type="button" 
