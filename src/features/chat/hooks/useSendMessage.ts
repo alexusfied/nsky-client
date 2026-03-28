@@ -5,6 +5,7 @@ import useChatStore from "@/shared/store/chatStore.ts";
 
 export function useSendMessage() {
     const [isStreaming, setIsStreaming] = useState(false);
+    const [isLoadingLlmResponse, setIsLoadingLlmResponse] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const addChat = useChatStore((state) => state.addChat);
     const addMessages = useMessageStore((store) => store.addMessages);
@@ -23,6 +24,7 @@ export function useSendMessage() {
     const sendMessage = async (content: string) => {
         setIsStreaming(true);
         setError(null);
+        setIsLoadingLlmResponse(true);
 
         try {
             addMessages([{role: "user", content: content}, {role: "llm", content: ""}]);
@@ -30,6 +32,7 @@ export function useSendMessage() {
 
             await streamUserMessage(selectedChatId, content, (chunk) => {
                 if (chunk.startsWith("chatId")) {
+                    setIsLoadingLlmResponse(false);
                     if (selectedChatId === null) {
                         newChatId = parseAddedChatId(chunk);
                         addChat({id: newChatId, title: content});
@@ -53,6 +56,7 @@ export function useSendMessage() {
     return {
         sendMessage,
         isStreaming,
+        isLoadingLlmResponse,
         error
     }
 }
