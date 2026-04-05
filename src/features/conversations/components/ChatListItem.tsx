@@ -8,7 +8,7 @@ function ChatListItem({content, isSelected, id}: {content: string, isSelected: b
         <li>
             <div className={`group flex justify-between w-full hover:bg-primary-variant hover:rounded-md cursor-pointer ${isSelected ? "bg-primary-variant" : ""}`}>
                 <button
-                    className={`text-white p-2 cursor-pointer`}
+                    className={`text-white p-2 cursor-pointer truncate`}
                     onClick={() => {
                         setSelectedChat(id);
                     }}
