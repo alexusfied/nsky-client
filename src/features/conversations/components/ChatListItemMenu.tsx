@@ -28,7 +28,7 @@ function ChatListItemMenu({chatId, setItemMenuIsVisible, itemMenuIsVisible}: {ch
         <div ref={menuRef} className={"flex flex-col   items-start bg-primary-variant absolute top-10 right-0 z-10 p-3 gap-2 rounded-md"}>
             <button className={"text-white cursor-pointer group"}>
                 <div className={"flex gap-4"}>
-                    <p>Umbenennen</p>
+                    <p>Rename</p>
                     <SquarePen className={"group-hover:text-on-primary"}/>
                 </div>
             </button>
@@ -43,7 +43,7 @@ function ChatListItemMenu({chatId, setItemMenuIsVisible, itemMenuIsVisible}: {ch
                     setItemMenuIsVisible(false);
             }}>
                 <div className={"flex gap-4"}>
-                    <p>Löschen</p>
+                    <p>Delete</p>
                     <Trash className={"group-hover:text-on-primary"}/>
                 </div>
             </button>
