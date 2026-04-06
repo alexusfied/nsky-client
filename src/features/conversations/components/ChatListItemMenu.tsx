@@ -7,6 +7,8 @@ function ChatListItemMenu({chatId, setItemMenuIsVisible}: {chatId: number, setIt
 
     const {isLoading, error, deleteChat} = useDeleteChat();
     const removeChat = useChatStore((state) => state.removeChat);
+    const setSelectedChat = useChatStore((state) => state.setSelectedChat);
+    const selectedChatId = useChatStore((state) => state.selectedChat);
 
     return(
         <div className={"flex flex-col   items-start bg-primary-variant absolute top-10 right-0 z-10 p-3 gap-2 rounded-md"}>
@@ -21,6 +23,9 @@ function ChatListItemMenu({chatId, setItemMenuIsVisible}: {chatId: number, setIt
                 onClick={() => {
                     deleteChat(chatId);
                     removeChat(chatId);
+
+                    if (selectedChatId === chatId) setSelectedChat(null);
+
                     setItemMenuIsVisible(false);
             }}>
                 <div className={"flex gap-4"}>
