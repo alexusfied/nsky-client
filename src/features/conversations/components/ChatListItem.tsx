@@ -5,7 +5,7 @@ import ChatListItemMenu from "./ChatListItemMenu.tsx";
 
 function ChatListItem({content, isSelected, id}: {content: string, isSelected: boolean, id: number}) {
     const setSelectedChat = useChatStore((store) => store.setSelectedChat);
-    const [itemMenuIsVisible, setItemMenuIsVisible] = useState(true);
+    const [itemMenuIsVisible, setItemMenuIsVisible] = useState(false);
 
     return (
         <div className={"relative"}>
@@ -29,7 +29,7 @@ function ChatListItem({content, isSelected, id}: {content: string, isSelected: b
                     </button>
                 </div>
             </li>
-            {itemMenuIsVisible && <ChatListItemMenu />}
+            {itemMenuIsVisible && <ChatListItemMenu chatId={id} setItemMenuIsVisible={setItemMenuIsVisible}/>}
         </div>
     );
 }

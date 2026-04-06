@@ -1,7 +1,8 @@
 import {SquarePen, Trash} from "lucide-react";
 import {useDeleteChat} from "../hooks/useDeleteChat.ts";
+import type {Dispatch, SetStateAction} from "react";
 
-function ChatListItemMenu() {
+function ChatListItemMenu({chatId, setItemMenuIsVisible}: {chatId: number, setItemMenuIsVisible: Dispatch<SetStateAction<boolean>> }) {
 
     const {isLoading, error, deleteChat} = useDeleteChat();
 
@@ -13,7 +14,12 @@ function ChatListItemMenu() {
                     <SquarePen className={"group-hover:text-on-primary"}/>
                 </div>
             </button>
-            <button className={"text-white cursor-pointer group"} onClick={() => { deleteChat(1); }}>
+            <button
+                className={"text-white cursor-pointer group"}
+                onClick={() => {
+                    deleteChat(chatId);
+                    setItemMenuIsVisible(false);
+            }}>
                 <div className={"flex gap-4"}>
                     <p>Löschen</p>
                     <Trash className={"group-hover:text-on-primary"}/>
