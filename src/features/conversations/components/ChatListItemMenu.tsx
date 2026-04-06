@@ -1,10 +1,12 @@
 import {SquarePen, Trash} from "lucide-react";
 import {useDeleteChat} from "../hooks/useDeleteChat.ts";
 import type {Dispatch, SetStateAction} from "react";
+import useChatStore from "@/shared/store/chatStore.ts";
 
 function ChatListItemMenu({chatId, setItemMenuIsVisible}: {chatId: number, setItemMenuIsVisible: Dispatch<SetStateAction<boolean>> }) {
 
     const {isLoading, error, deleteChat} = useDeleteChat();
+    const removeChat = useChatStore((state) => state.removeChat);
 
     return(
         <div className={"flex flex-col   items-start bg-primary-variant absolute top-10 right-0 z-10 p-3 gap-2 rounded-md"}>
@@ -18,6 +20,7 @@ function ChatListItemMenu({chatId, setItemMenuIsVisible}: {chatId: number, setIt
                 className={"text-white cursor-pointer group"}
                 onClick={() => {
                     deleteChat(chatId);
+                    removeChat(chatId);
                     setItemMenuIsVisible(false);
             }}>
                 <div className={"flex gap-4"}>

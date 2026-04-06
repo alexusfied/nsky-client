@@ -7,6 +7,7 @@ const useChatStore = create<IChatState>((set) => ({
     selectedChat: null,
     setSelectedChat: (id: number | null) => set((state) => ({ selectedChat: id })),
     addChat: (chat) => set((state) => ({ chats: [...state.chats, chat] })),
+    removeChat: (removedChat: number) => set((state) => ({ chats: state.chats.filter((chat) => chat.id !== removedChat) })),
     setChats: (chats: IChat[]) => set((state) => ({ chats: chats }))
 }));
 
