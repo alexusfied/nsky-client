@@ -1,6 +1,12 @@
 import type {Ref} from "react";
 
-function PopupDialog({onConfirm, onCancel, ref}: {onConfirm: () => void, onCancel: () => void, ref: Ref<HTMLDivElement> | undefined}) {
+interface IPopupDialogProps {
+    onConfirm: () => void,
+    onCancel: () => void,
+    ref: Ref<HTMLDivElement> | undefined
+}
+
+function PopupDialog({onConfirm, onCancel, ref}: IPopupDialogProps) {
     return (
         <div className={"fixed top-1/2 left-1/2 p-3 bg-primary rounded-md flex-col"} ref={ref}>
             <p className={"text-white"}>This is the popup</p>
