@@ -9,11 +9,11 @@ interface IPopupDialogProps {
 
 function PopupDialog({onConfirm, onCancel, ref, text}: IPopupDialogProps) {
     return (
-        <div className={"fixed top-1/2 left-1/2 p-3 bg-primary rounded-md flex-col"} ref={ref}>
+        <div className={"fixed top-1/2 left-1/2 p-4 bg-primary rounded-md flex flex-col gap-4"} ref={ref}>
             <p className={"text-white"}>{text}</p>
-            <div className={"flex"}>
-                <button onClick={onCancel}>Cancel</button>
-                <button onClick={onConfirm}>Confirm</button>
+            <div className={"flex gap-3"}>
+                <button onClick={onCancel} className={"bg-gray-500 p-2 rounded-md cursor-pointer hover:bg-gray-700"}>Cancel</button>
+                <button onClick={onConfirm} className={"bg-red-400 p-2 rounded-md cursor-pointer hover:bg-red-700"}>Confirm</button>
             </div>
         </div>
     );
