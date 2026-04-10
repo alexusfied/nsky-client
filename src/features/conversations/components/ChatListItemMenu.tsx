@@ -66,6 +66,7 @@ function ChatListItemMenu({chatId, setItemMenuIsVisible, itemMenuIsVisible}: {ch
                   setItemMenuIsVisible(false);
               }}
               ref={popupRef}
+              text={"Do you really want to delete this chat?"}
             />}
         </>
     );
