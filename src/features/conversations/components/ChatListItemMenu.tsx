@@ -91,7 +91,7 @@ function ChatListItemMenu({chatId, setItemMenuIsVisible, itemMenuIsVisible, chat
                     setItemMenuIsVisible(false);
                 }}
             >
-              <input type={"text"} value={newChatName} onInput={ (event) => {setNewChatName(event.currentTarget.value)}}/>
+              <input className={"border rounded-md p-2"} type={"text"} value={newChatName} onInput={ (event) => {setNewChatName(event.currentTarget.value)}}/>
             </PopupDialog>}
         </>
     );
