@@ -1,12 +1,8 @@
-import {type Dispatch, type SetStateAction} from "react";
-
 interface IPopupDialogProps {
     onConfirm: () => void,
     onCancel: () => void,
     children: any,
     body?: HTMLDivElement
-    isVisible: boolean
-    setIsVisible: Dispatch<SetStateAction<boolean>>
 }
 
 function PopupDialog({onConfirm, onCancel, children}: IPopupDialogProps) {

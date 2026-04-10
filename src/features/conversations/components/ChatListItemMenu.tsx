@@ -69,16 +69,15 @@ function ChatListItemMenu({chatId, setItemMenuIsVisible, itemMenuIsVisible}: {ch
                   setShowConfirmDeletePopup(false);
                   setItemMenuIsVisible(false);
               }}
-              isVisible={showConfirmDeletePopup}
-              setIsVisible={setShowConfirmDeletePopup}
             >
               <p>Do you really want to delete this chat?</p>
             </PopupDialog>}
             {showRenameChatPopup && <PopupDialog
                 onConfirm={() => {}}
-                onCancel={() => {}}
-                isVisible={showRenameChatPopup}
-                setIsVisible={setShowRenameChatPopup}
+                onCancel={() => {
+                    setShowRenameChatPopup(false);
+                    setItemMenuIsVisible(false);
+                }}
             >
               <input type={"text"} />
             </PopupDialog>}
