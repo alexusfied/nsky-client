@@ -14,7 +14,6 @@ function ChatListItemMenu({chatId, setItemMenuIsVisible, itemMenuIsVisible}: {ch
     const [showRenameChatPopup, setShowRenameChatPopup] = useState(false);
 
     const menuRef = useRef<HTMLDivElement | null>(null);
-    const popupRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
@@ -24,12 +23,12 @@ function ChatListItemMenu({chatId, setItemMenuIsVisible, itemMenuIsVisible}: {ch
             ) setItemMenuIsVisible(false);
         }
 
-        if (itemMenuIsVisible) document.addEventListener("mousedown", handleClickOutside);
+        if (itemMenuIsVisible && !(showConfirmDeletePopup || showRenameChatPopup)) document.addEventListener("mousedown", handleClickOutside);
 
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         }
-    }, [itemMenuIsVisible]);
+    }, [itemMenuIsVisible, showConfirmDeletePopup, showRenameChatPopup]);
 
     return(
         <>
@@ -70,7 +69,6 @@ function ChatListItemMenu({chatId, setItemMenuIsVisible, itemMenuIsVisible}: {ch
                   setShowConfirmDeletePopup(false);
                   setItemMenuIsVisible(false);
               }}
-              ref={popupRef}
               isVisible={showConfirmDeletePopup}
               setIsVisible={setShowConfirmDeletePopup}
             >
@@ -79,11 +77,10 @@ function ChatListItemMenu({chatId, setItemMenuIsVisible, itemMenuIsVisible}: {ch
             {showRenameChatPopup && <PopupDialog
                 onConfirm={() => {}}
                 onCancel={() => {}}
-                ref={popupRef}
                 isVisible={showRenameChatPopup}
                 setIsVisible={setShowRenameChatPopup}
             >
-              <p>test</p>
+              <input type={"text"} />
             </PopupDialog>}
         </>
     );
