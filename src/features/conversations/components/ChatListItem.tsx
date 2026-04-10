@@ -29,7 +29,12 @@ function ChatListItem({content, isSelected, id}: {content: string, isSelected: b
                     </button>
                 </div>
             </li>
-            {itemMenuIsVisible && <ChatListItemMenu chatId={id} setItemMenuIsVisible={setItemMenuIsVisible} itemMenuIsVisible={itemMenuIsVisible}/>}
+            {itemMenuIsVisible && <ChatListItemMenu
+                chatId={id}
+                setItemMenuIsVisible={setItemMenuIsVisible}
+                itemMenuIsVisible={itemMenuIsVisible}
+                chatName={content}
+            />}
         </div>
     );
 }

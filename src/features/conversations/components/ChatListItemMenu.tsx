@@ -4,7 +4,14 @@ import {type Dispatch, type SetStateAction, useEffect, useRef, useState} from "r
 import useChatStore from "@/shared/store/chatStore.ts";
 import PopupDialog from "@/shared/components/PopupDialog.tsx";
 
-function ChatListItemMenu({chatId, setItemMenuIsVisible, itemMenuIsVisible}: {chatId: number, setItemMenuIsVisible: Dispatch<SetStateAction<boolean>>, itemMenuIsVisible: boolean }) {
+interface IChatListItemMenuProps {
+    chatId: number,
+    setItemMenuIsVisible: Dispatch<SetStateAction<boolean>>,
+    itemMenuIsVisible: boolean,
+    chatName: string
+}
+
+function ChatListItemMenu({chatId, setItemMenuIsVisible, itemMenuIsVisible, chatName}: IChatListItemMenuProps ) {
 
     const {isLoading, error, deleteChat} = useDeleteChat();
     const removeChat = useChatStore((state) => state.removeChat);
@@ -79,7 +86,7 @@ function ChatListItemMenu({chatId, setItemMenuIsVisible, itemMenuIsVisible}: {ch
                     setItemMenuIsVisible(false);
                 }}
             >
-              <input type={"text"} />
+              <input type={"text"} value={chatName}/>
             </PopupDialog>}
         </>
     );
