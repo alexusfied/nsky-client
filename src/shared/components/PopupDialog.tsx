@@ -1,13 +1,29 @@
-import type {Ref} from "react";
+import {type Dispatch, type Ref, type RefObject, type SetStateAction, useEffect} from "react";
 
 interface IPopupDialogProps {
     onConfirm: () => void,
     onCancel: () => void,
-    ref: Ref<HTMLDivElement> | undefined
-    text: string
+    ref: RefObject<HTMLDivElement | null>
+    text: string,
+    isVisible: boolean
+    setIsVisible: Dispatch<SetStateAction<boolean>>
 }
 
-function PopupDialog({onConfirm, onCancel, ref, text}: IPopupDialogProps) {
+function PopupDialog({onConfirm, onCancel, ref, text, isVisible, setIsVisible}: IPopupDialogProps) {
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (ref.current && !ref.current.contains(event.target as Node)) {
+                setIsVisible(false)
+            }
+        }
+
+        if (isVisible) document.addEventListener("mousedown", handleClickOutside);
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+    }, [isVisible])
+
     return (
         <>
             <div className={"w-screen h-screen z-30 fixed top-0 left-0 backdrop-blur-sm opacity-50 bg-black"}></div>

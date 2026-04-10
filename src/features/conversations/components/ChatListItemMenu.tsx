@@ -19,9 +19,8 @@ function ChatListItemMenu({chatId, setItemMenuIsVisible, itemMenuIsVisible}: {ch
         function handleClickOutside(event: MouseEvent) {
             if (
                 menuRef.current &&
-                !menuRef.current.contains(event.target as Node) &&
-                popupRef.current &&
-                !popupRef.current.contains(event.target as Node)) setItemMenuIsVisible(false)
+                !menuRef.current.contains(event.target as Node)
+            ) setItemMenuIsVisible(false);
         }
 
         if (itemMenuIsVisible) document.addEventListener("mousedown", handleClickOutside);
@@ -67,6 +66,8 @@ function ChatListItemMenu({chatId, setItemMenuIsVisible, itemMenuIsVisible}: {ch
               }}
               ref={popupRef}
               text={"Do you really want to delete this chat?"}
+              isVisible={showConfirmDeletePopup}
+              setIsVisible={setShowConfirmDeletePopup}
             />}
         </>
     );
