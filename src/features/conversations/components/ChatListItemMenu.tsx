@@ -3,6 +3,7 @@ import {useDeleteChat} from "../hooks/useDeleteChat.ts";
 import {type Dispatch, type SetStateAction, useEffect, useRef, useState} from "react";
 import useChatStore from "@/shared/store/chatStore.ts";
 import PopupDialog from "@/shared/components/PopupDialog.tsx";
+import useRenameChat from "../hooks/useRenameChat.ts";
 
 interface IChatListItemMenuProps {
     chatId: number,
@@ -19,6 +20,7 @@ function ChatListItemMenu({chatId, setItemMenuIsVisible, itemMenuIsVisible, chat
     const selectedChatId = useChatStore((state) => state.selectedChat);
     const [showConfirmDeletePopup, setShowConfirmDeletePopup] = useState(false);
     const [showRenameChatPopup, setShowRenameChatPopup] = useState(false);
+    const {newChatName, setNewChatName, renameChat} = useRenameChat(chatName);
 
     const menuRef = useRef<HTMLDivElement | null>(null);
 
@@ -80,13 +82,16 @@ function ChatListItemMenu({chatId, setItemMenuIsVisible, itemMenuIsVisible, chat
               <p>Do you really want to delete this chat?</p>
             </PopupDialog>}
             {showRenameChatPopup && <PopupDialog
-                onConfirm={() => {}}
+                onConfirm={async () => {
+                    await renameChat(chatId);
+                    setItemMenuIsVisible(false);
+                }}
                 onCancel={() => {
                     setShowRenameChatPopup(false);
                     setItemMenuIsVisible(false);
                 }}
             >
-              <input type={"text"} value={chatName}/>
+              <input type={"text"} value={newChatName} onInput={ (event) => {setNewChatName(event.currentTarget.value)}}/>
             </PopupDialog>}
         </>
     );
