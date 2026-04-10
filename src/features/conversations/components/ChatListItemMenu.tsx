@@ -11,6 +11,7 @@ function ChatListItemMenu({chatId, setItemMenuIsVisible, itemMenuIsVisible}: {ch
     const setSelectedChat = useChatStore((state) => state.setSelectedChat);
     const selectedChatId = useChatStore((state) => state.selectedChat);
     const [showConfirmDeletePopup, setShowConfirmDeletePopup] = useState(false);
+    const [showRenameChatPopup, setShowRenameChatPopup] = useState(false);
 
     const menuRef = useRef<HTMLDivElement | null>(null);
     const popupRef = useRef<HTMLDivElement | null>(null);
@@ -32,8 +33,13 @@ function ChatListItemMenu({chatId, setItemMenuIsVisible, itemMenuIsVisible}: {ch
 
     return(
         <>
-            <div ref={menuRef} className={"flex flex-col   items-start bg-primary-variant absolute top-10 right-0 z-10 p-3 gap-2 rounded-md"}>
-                <button className={"text-white cursor-pointer group"}>
+            <div ref={menuRef} className={"flex flex-col items-start bg-primary-variant absolute top-10 right-0 z-10 p-3 gap-2 rounded-md"}>
+                <button
+                    className={"text-white cursor-pointer group"}
+                    onClick={() => {
+                        setShowRenameChatPopup(true);
+                    }}
+                >
                     <div className={"flex gap-4"}>
                         <p>Rename</p>
                         <SquarePen className={"group-hover:text-on-primary"}/>
@@ -65,10 +71,20 @@ function ChatListItemMenu({chatId, setItemMenuIsVisible, itemMenuIsVisible}: {ch
                   setItemMenuIsVisible(false);
               }}
               ref={popupRef}
-              text={"Do you really want to delete this chat?"}
               isVisible={showConfirmDeletePopup}
               setIsVisible={setShowConfirmDeletePopup}
-            />}
+            >
+              <p>Do you really want to delete this chat?</p>
+            </PopupDialog>}
+            {showRenameChatPopup && <PopupDialog
+                onConfirm={() => {}}
+                onCancel={() => {}}
+                ref={popupRef}
+                isVisible={showRenameChatPopup}
+                setIsVisible={setShowRenameChatPopup}
+            >
+              <p>test</p>
+            </PopupDialog>}
         </>
     );
 }
