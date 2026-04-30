@@ -32,13 +32,13 @@ export function useSendMessage() {
 
             await streamUserMessage(selectedChatId, content, (chunk) => {
                 if (chunk.startsWith("chatId")) {
-                    setIsLoadingLlmResponse(false);
                     if (selectedChatId === null) {
                         newChatId = parseAddedChatId(chunk);
                         addChat({id: newChatId, title: content});
                     }
                     return;
                 }
+                setIsLoadingLlmResponse(false);
                 streamMessage(chunk);
             });
 
