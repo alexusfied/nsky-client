@@ -6,6 +6,7 @@ import useChatStore from "@/shared/store/chatStore.ts";
 export function useSendMessage() {
     const [isStreaming, setIsStreaming] = useState(false);
     const [isLoadingLlmResponse, setIsLoadingLlmResponse] = useState(false);
+    const [isPerformingWebSearch, setIsPerformingWebSearch] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const addChat = useChatStore((state) => state.addChat);
     const addMessages = useMessageStore((store) => store.addMessages);
@@ -38,6 +39,11 @@ export function useSendMessage() {
                     }
                     return;
                 }
+                if (chunk === "WEB_SEARCH_STARTED") {
+                    setIsPerformingWebSearch(true)
+                    return;
+                }
+                setIsPerformingWebSearch(false);
                 setIsLoadingLlmResponse(false);
                 streamMessage(chunk);
             });
@@ -57,6 +63,7 @@ export function useSendMessage() {
         sendMessage,
         isStreaming,
         isLoadingLlmResponse,
+        isPerformingWebSearch,
         error
     }
 }
