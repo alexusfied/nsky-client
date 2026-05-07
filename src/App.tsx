@@ -3,7 +3,7 @@ import ChatPage from "./pages/ChatPage";
 
 export function App() {
     return (
-        <main>
+        <main className={"bg-primary-variant"}>
             <ChatPage />
         </main>
     );
