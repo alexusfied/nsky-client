@@ -257,6 +257,15 @@
   .w-5\/6 {
     width: calc(5 / 6 * 100%);
   }
+  .w-\[15vw\] {
+    width: 15vw;
+  }
+  .w-\[25vw\] {
+    width: 25vw;
+  }
+  .w-\[50vw\] {
+    width: 50vw;
+  }
   .w-full {
     width: 100%;
   }
@@ -317,6 +326,9 @@
   }
   .gap-8 {
     gap: calc(var(--spacing) * 8);
+  }
+  .gap-12 {
+    gap: calc(var(--spacing) * 12);
   }
   .truncate {
     overflow: hidden;

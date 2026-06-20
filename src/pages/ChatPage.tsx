@@ -16,7 +16,15 @@ function ChatPage() {
               onCancel={() => {
                   setShowSettingsDialog(false);
               }}
-              children={<div></div>}
+              hideButtons={true}
+              children={
+                  <div className={`flex justify-between w-[15vw]`}>
+                      <label htmlFor={`provider`}>Provider</label>
+                      <select name={`provider`} id={`provider`}>
+                          <option>Ollama</option>
+                      </select>
+                  </div>
+              }
             />
             }
         </div>
