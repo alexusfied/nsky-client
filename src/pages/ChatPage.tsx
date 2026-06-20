@@ -6,6 +6,9 @@ import useSettingsStore from "@/shared/store/settingsStore.ts";
 function ChatPage() {
     const showSettingsDialog = useSettingsStore((state) => state.showSettingsDialog);
     const setShowSettingsDialog = useSettingsStore((state) => state.setShowSettingsDialog);
+    const selectedProvider = useSettingsStore((state) => state.selectedProvider);
+    const setSelectedProvider = useSettingsStore((state) => state.setSelectedProvider);
+    const providerList = useSettingsStore((state) => state.providerList);
 
     return (
         <div className="flex flex-row h-screen">
@@ -20,8 +23,10 @@ function ChatPage() {
               children={
                   <div className={`flex justify-between w-[15vw]`}>
                       <label htmlFor={`provider`}>Provider</label>
-                      <select name={`provider`} id={`provider`}>
-                          <option>Ollama</option>
+                      <select defaultValue={selectedProvider} name={`provider`} id={`provider`} onChange={(event) => {setSelectedProvider(event.target.value)}}>
+                          {
+                              providerList.map((provider) => <option>{provider}</option>)
+                          }
                       </select>
                   </div>
               }
