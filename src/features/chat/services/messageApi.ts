@@ -1,10 +1,15 @@
-export async function streamUserMessage(chatId: number | null, content: string, onChunk: (chunk: string) => void) {
+export async function streamUserMessage(
+    chatId: number | null,
+    content: string,
+    provider: string,
+    onChunk: (chunk: string) => void
+) {
     const response = await fetch(`http://localhost:8192/api/llm/stream`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ chatId: chatId, prompt: content })
+        body: JSON.stringify({ chatId: chatId, prompt: content, provider: provider })
     });
 
     if (!response.body) throw new Error("No stream response received");

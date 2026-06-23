@@ -2,6 +2,7 @@ import {useState} from "react";
 import {streamUserMessage} from "@/features/chat/services/messageApi.ts";
 import useMessageStore from "../../../shared/store/messageStore.ts";
 import useChatStore from "@/shared/store/chatStore.ts";
+import useSettingsStore from "@/shared/store/settingsStore.ts";
 
 export function useSendMessage() {
     const [isStreaming, setIsStreaming] = useState(false);
@@ -13,6 +14,7 @@ export function useSendMessage() {
     const streamMessage = useMessageStore((state) => state.streamMessage);
     const setSelectedChat = useChatStore((store) => store.setSelectedChat);
     const selectedChatId = useChatStore((store) => store.selectedChat);
+    const selectedProvider = useSettingsStore((store) => store.selectedProvider);
 
     const parseAddedChatId = (chunk: string) => {
         const chatId = chunk.split(" ")[1];
@@ -31,7 +33,7 @@ export function useSendMessage() {
             addMessages([{role: "user", content: content}, {role: "llm", content: ""}]);
             let newChatId: number | null = null;
 
-            await streamUserMessage(selectedChatId, content, (chunk) => {
+            await streamUserMessage(selectedChatId, content, selectedProvider, (chunk) => {
                 if (chunk.startsWith("chatId")) {
                     if (selectedChatId === null) {
                         newChatId = parseAddedChatId(chunk);
