@@ -1,31 +1,30 @@
+import { fetchEventSource } from "@microsoft/fetch-event-source";
+import type {IStreamResponseEvent} from "@/shared/types/IStreamResponseEvent.ts";
+
 export async function streamUserMessage(
     chatId: number | null,
     content: string,
     provider: string,
-    onChunk: (chunk: string) => void
+    onChunk: (chunk: IStreamResponseEvent) => void
 ) {
-    const response = await fetch(`http://localhost:8192/api/llm/stream`, {
+    const ctrl = new AbortController();
+
+    await fetchEventSource(`http://localhost:8192/api/llm/stream`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ chatId: chatId, prompt: content, provider: provider })
-    });
+        body: JSON.stringify({ chatId: chatId, prompt: content, provider: provider }),
+        onerror(err) {
+            throw new Error("Error in message streaming: " + err);
+        },
+        onmessage(eventMsg) {
+            const event: IStreamResponseEvent = {
+                event: eventMsg.event,
+                data: eventMsg.data
+            }
 
-    if (!response.body) throw new Error("No stream response received");
-
-    const reader = response.body.getReader();
-    const decoder = new TextDecoder("utf-8");
-
-    let done = false;
-
-    while(!done) {
-        const result = await reader.read();
-        done = result.done;
-
-        if (result.value) {
-            const chunk = decoder.decode(result.value, { stream: true });
-            onChunk(chunk);
+            onChunk(event);
         }
-    }
+    });
 }
