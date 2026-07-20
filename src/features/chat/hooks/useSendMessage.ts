@@ -40,7 +40,7 @@ export function useSendMessage() {
                     setIsPerformingWebSearch(false);
                     setIsLoadingLlmResponse(false);
                 }
-                streamMessage(event.data);
+                streamMessage(JSON.parse(event.data).content);
             });
 
             if (newChatId !== null) {
