@@ -16,14 +16,6 @@ export function useSendMessage() {
     const selectedChatId = useChatStore((store) => store.selectedChat);
     const selectedProvider = useSettingsStore((store) => store.selectedProvider);
 
-    const parseAddedChatId = (chunk: string) => {
-        const chatId = chunk.split(" ")[1];
-
-        if (chatId === undefined) throw new Error("Chat id could not be parsed");
-
-        return Number(chatId);
-    }
-
     const sendMessage = async (content: string) => {
         setIsStreaming(true);
         setError(null);
@@ -33,21 +25,22 @@ export function useSendMessage() {
             addMessages([{role: "user", content: content}, {role: "llm", content: ""}]);
             let newChatId: number | null = null;
 
-            await streamUserMessage(selectedChatId, content, selectedProvider, (chunk) => {
-                if (chunk.startsWith("chatId")) {
+            await streamUserMessage(selectedChatId, content, selectedProvider, (event) => {
+                if (event.event === "chat-id") {
                     if (selectedChatId === null) {
-                        newChatId = parseAddedChatId(chunk);
+                        newChatId = Number(event.data);
                         addChat({id: newChatId, title: content});
                     }
                     return;
                 }
-                if (chunk === "WEB_SEARCH_STARTED") {
+                if (event.event === "web-search") {
                     setIsPerformingWebSearch(true)
                     return;
+                } if (event.event === "token") {
+                    setIsPerformingWebSearch(false);
+                    setIsLoadingLlmResponse(false);
                 }
-                setIsPerformingWebSearch(false);
-                setIsLoadingLlmResponse(false);
-                streamMessage(chunk);
+                streamMessage(JSON.parse(event.data).content);
             });
 
             if (newChatId !== null) {

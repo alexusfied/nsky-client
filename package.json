@@ -9,6 +9,7 @@
     "start": "NODE_ENV=production bun src/index.ts"
   },
   "dependencies": {
+    "@microsoft/fetch-event-source": "^2.0.1",
     "@tailwindcss/cli": "^4.2.1",
     "axios": "^1.13.6",
     "lucide-react": "^1.3.0",
