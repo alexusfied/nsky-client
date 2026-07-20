@@ -6,7 +6,7 @@ function ChatList({chats}: {chats: IChat[]}) {
     const selectedChatId = useChatStore((store) => store.selectedChat);
 
     return (
-        <ul>
+        <ul className={`overflow-scroll`}>
             {chats.map(chat => <ChatListItem content={chat.title} isSelected={chat.id === selectedChatId} id={chat.id}/>)}
         </ul>
     );
