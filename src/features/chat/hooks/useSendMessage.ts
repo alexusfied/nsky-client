@@ -28,7 +28,7 @@ export function useSendMessage() {
             await streamUserMessage(selectedChatId, content, selectedProvider, (event) => {
                 if (event.event === "chat-id") {
                     if (selectedChatId === null) {
-                        newChatId = Number(event.data);
+                        newChatId = Number(JSON.parse(event.data).content);
                         addChat({id: newChatId, title: content});
                     }
                     return;
