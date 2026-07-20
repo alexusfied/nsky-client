@@ -10,7 +10,7 @@ function ChatListItem({content, isSelected, id}: {content: string, isSelected: b
     return (
         <div className={"relative"}>
             <li>
-                <div className={`group flex w-full hover:bg-primary-variant hover:rounded-md cursor-pointer ${isSelected ? "bg-primary-variant" : ""}`}>
+                <div className={`group flex gap-4 w-14/15 hover:bg-primary-variant hover:rounded-md cursor-pointer ${isSelected ? "bg-primary-variant" : ""}`}>
                     <button
                         className={`text-white p-2 cursor-pointer truncate w-full flex justify-start`}
                         onClick={() => {
