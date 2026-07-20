@@ -15,7 +15,7 @@ function Conversations() {
 
     return (
         <>
-            <section className={`flex flex-col justify-between bg-primary h-screen w-1/4 p-4 transition ${isHidden ? "-translate-x-full absolute" : ""}`}>
+            <section className={`flex flex-col gap-8 justify-between bg-primary h-screen w-1/4 p-4 transition ${isHidden ? "-translate-x-full absolute" : ""}`}>
                 <div className={`flex flex-col gap-8 overflow-hidden`}>
                     <div className={`flex w-full justify-between sticky`}>
                         <ActionsBar />
