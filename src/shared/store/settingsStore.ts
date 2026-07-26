@@ -6,7 +6,10 @@ const useSettingsStore = create<ISettingsState>((set) => ({
     setShowSettingsDialog: (value: boolean) => set(() => ({ showSettingsDialog: value })),
     selectedProvider: "Ollama",
     setSelectedProvider: (value: string) => set(() => ({ selectedProvider: value })),
-    providerList: ["Ollama", "Mistral"]
+    providerList: ["Ollama", "Mistral"],
+    themesList: ["Nsky"],
+    selectedTheme: "Nsky",
+    setSelectedTheme: (value: string) => set(() => ({ selectedTheme: value }))
 }));
 
 export default useSettingsStore;
