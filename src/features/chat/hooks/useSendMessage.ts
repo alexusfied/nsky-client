@@ -36,7 +36,7 @@ export function useSendMessage() {
                 if (event.event === "web-search") {
                     setIsPerformingWebSearch(true)
                     return;
-                } if (event.event === "token") {
+                } if (event.event === "token" && JSON.parse(event.data).content !== "") {
                     setIsPerformingWebSearch(false);
                     setIsLoadingLlmResponse(false);
                 }
