@@ -9,7 +9,7 @@ import { Circle } from "lucide-react";
 function Chat() {
 
     const {isLoadingMessages, errorLoadingMessages, messages} = useLoadMessagesForChat();
-    const {sendMessage, isStreaming, isLoadingLlmResponse, isPerformingWebSearch, error} = useSendMessage();
+    const {sendMessage, isStreaming, isThinking, isLoadingLlmResponse, isPerformingWebSearch, error} = useSendMessage();
     const {chatRef} = useAutoScroll();
 
     return (
@@ -21,6 +21,7 @@ function Chat() {
                 <div className={"flex gap-4"}>
                   {isLoadingLlmResponse && <Circle className="animate-ping" color={"#fcfcfc"}/>}
                   {isPerformingWebSearch && <p className={"text-white"}>Searching the web...</p>}
+                  {isThinking && <p className={"text-white"}>Thinking...</p>}
                 </div>
             </div>
             <MessageInput onMessageSent={sendMessage}/>

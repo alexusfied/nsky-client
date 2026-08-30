@@ -6,6 +6,7 @@ import useSettingsStore from "@/shared/store/settingsStore.ts";
 
 export function useSendMessage() {
     const [isStreaming, setIsStreaming] = useState(false);
+    const [isThinking, setIsThinking] = useState(false);
     const [isLoadingLlmResponse, setIsLoadingLlmResponse] = useState(false);
     const [isPerformingWebSearch, setIsPerformingWebSearch] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -33,11 +34,16 @@ export function useSendMessage() {
                     }
                     return;
                 }
+                if (event.event === "think" && !isThinking) {
+                    setIsThinking(true);
+                    return;
+                }
                 if (event.event === "web-search") {
                     setIsPerformingWebSearch(true)
                     return;
                 } if (event.event === "token" && JSON.parse(event.data).content !== "") {
                     setIsPerformingWebSearch(false);
+                    setIsThinking(false);
                     setIsLoadingLlmResponse(false);
                 }
                 streamMessage(JSON.parse(event.data).content);
@@ -57,6 +63,7 @@ export function useSendMessage() {
     return {
         sendMessage,
         isStreaming,
+        isThinking,
         isLoadingLlmResponse,
         isPerformingWebSearch,
         error
