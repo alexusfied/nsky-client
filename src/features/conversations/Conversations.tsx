@@ -5,7 +5,8 @@ import useChatStore from "@/shared/store/chatStore.ts";
 import ActionsBar from "@/features/conversations/components/ActionsBar.tsx";
 import ToggleSidebarButton from "./components/ToggleSidebarButton.tsx";
 import BottomBar from "@/features/conversations/components/BottomBar.tsx";
-
+import AddChatButton from "./components/AddChatButton.tsx";
+import SettingsButton from "./components/SettingsButton.tsx";
 
 function Conversations() {
     const {isLoading, error} = useLoadChats();
@@ -28,6 +29,8 @@ function Conversations() {
             { isHidden &&
                 <section className={`flex flex-col bg-primary h-screen p-4`}>
                     <ToggleSidebarButton onHide={() => {setIsHidden(!isHidden)}} />
+                    <AddChatButton />
+                    <SettingsButton />
                 </section>
             }
         </>

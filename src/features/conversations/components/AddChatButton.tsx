@@ -5,13 +5,10 @@ function AddChatButton() {
     const setSelectedChat = useChatStore((store) => store.setSelectedChat);
 
     return (
-        <button className="cursor-pointer text-on-primary hover:bg-on-primary hover:rounded-md hover:text-primary" onClick={() => {
+        <button className="cursor-pointer text-on-primary hover:bg-on-primary hover:rounded-md hover:text-primary p-2" onClick={() => {
             setSelectedChat(null);
         }}>
-            <div className="flex gap-2 p-2">
-                <CirclePlus />
-                <p className="">New Chat</p>
-            </div>
+            <CirclePlus />
         </button>
     );
 }
