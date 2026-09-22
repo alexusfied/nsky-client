@@ -3,7 +3,9 @@ interface ISettingsState {
     setShowSettingsDialog: (value: boolean) => void
     selectedProvider: string,
     setSelectedProvider: (value: string) => void,
-    providerList: string[]
+    providerList: string[],
+    think: boolean,
+    setThink: (value: boolean) => void
 }
 
 export type { ISettingsState }

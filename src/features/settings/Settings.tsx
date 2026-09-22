@@ -9,6 +9,8 @@ function Settings() {
     const selectedTheme = useSettingsStore((state) => state.selectedTheme);
     const setSelectedTheme = useSettingsStore((state) => state.setSelectedTheme);
     const setShowSettingsDialog = useSettingsStore((state) => state.setShowSettingsDialog);
+    const think = useSettingsStore((state) => state.think);
+    const setThink = useSettingsStore((state) => state.setThink);
 
     return (
         <PopupDialog
@@ -38,6 +40,11 @@ function Settings() {
                                   themesList.map((theme) => <option>{theme}</option>)
                               }
                           </select>
+                      </div>
+                      <hr />
+                      <div className={`flex justify-between w-[15vw]`}>
+                          <label htmlFor={`think`} className={`font-semibold`}>Think</label>
+                          <input type="checkbox" id="think" name="think" checked={think} onChange={(e) => {setThink(e.target.checked)}}></input>
                       </div>
                   </div>
               }

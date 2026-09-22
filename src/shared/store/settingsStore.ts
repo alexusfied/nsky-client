@@ -9,7 +9,9 @@ const useSettingsStore = create<ISettingsState>((set) => ({
     providerList: ["Ollama", "Mistral"],
     themesList: ["Nsky"],
     selectedTheme: "Nsky",
-    setSelectedTheme: (value: string) => set(() => ({ selectedTheme: value }))
+    setSelectedTheme: (value: string) => set(() => ({ selectedTheme: value })),
+    think: true,
+    setThink: (value: boolean) => set(() => ({ think: value })),
 }));
 
 export default useSettingsStore;
