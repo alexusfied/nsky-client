@@ -1,16 +1,20 @@
-import useSettingsStore from "@/shared/store/settingsStore.ts";
 import PopupDialog from "@/shared/components/PopupDialog.tsx";
+import useSettingsStore from "@/shared/store/settingsStore.ts";
+import { useSaveSetting } from "./hooks/useSaveSetting.ts"; 
 
 function Settings() {
-    const selectedProvider = useSettingsStore((state) => state.selectedProvider);
-    const setSelectedProvider = useSettingsStore((state) => state.setSelectedProvider);
-    const providerList = useSettingsStore((state) => state.providerList);
-    const themesList = useSettingsStore((state) => state.themesList);
-    const selectedTheme = useSettingsStore((state) => state.selectedTheme);
-    const setSelectedTheme = useSettingsStore((state) => state.setSelectedTheme);
     const setShowSettingsDialog = useSettingsStore((state) => state.setShowSettingsDialog);
-    const think = useSettingsStore((state) => state.think);
-    const setThink = useSettingsStore((state) => state.setThink);
+    const {
+        selectedProvider,
+        setSelectedProvider,
+        providerList,
+        themesList,
+        selectedTheme,
+        setSelectedTheme,
+        think,
+        setThink,
+        saveSetting
+    } = useSaveSetting();
 
     return (
         <PopupDialog
@@ -26,25 +30,43 @@ function Settings() {
                       }  
                       <div className={`flex justify-between w-[15vw]`}>
                           <label htmlFor={`provider`} className={`font-semibold`}>Provider</label>
-                          <select defaultValue={selectedProvider} name={`provider`} id={`provider`} onChange={(event) => {setSelectedProvider(event.target.value)}}>
-                              {
-                                  providerList.map((provider) => <option>{provider}</option>)
-                              }
+                          <select 
+                              defaultValue={selectedProvider} 
+                              name={`provider`} 
+                              id={`provider`} 
+                              onChange={(event) => {
+                                  setSelectedProvider(event.target.value);
+                                  saveSetting("PROVIDER");
+                              }}>
+                              { providerList.map((provider) => <option>{provider}</option>) }
                           </select>
                       </div>
                       <hr />
                       <div className={`flex justify-between w-[15vw]`}>
                           <label htmlFor={`theme`} className={`font-semibold`}>Theme</label>
-                          <select defaultValue={selectedTheme} name={`theme`} id={`theme`} onChange={(event) => {setSelectedTheme(event.target.value)}}>
-                              {
-                                  themesList.map((theme) => <option>{theme}</option>)
-                              }
+                          <select 
+                              defaultValue={selectedTheme} 
+                              name={`theme`} 
+                              id={`theme`} 
+                              onChange={(event) => {
+                                  setSelectedTheme(event.target.value);
+                                  saveSetting("THEME");
+                              }}>
+                              { themesList.map((theme) => <option>{theme}</option>) }
                           </select>
                       </div>
                       <hr />
                       <div className={`flex justify-between w-[15vw]`}>
                           <label htmlFor={`think`} className={`font-semibold`}>Think</label>
-                          <input type="checkbox" id="think" name="think" checked={think} onChange={(e) => {setThink(e.target.checked)}}></input>
+                          <input 
+                              type="checkbox" 
+                              id="think" 
+                              name="think" 
+                              checked={think} 
+                              onChange={(e) => {
+                                  setThink(e.target.checked);
+                                  saveSetting("THINK");
+                              }}></input>
                       </div>
                   </div>
               }
