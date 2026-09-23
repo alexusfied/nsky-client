@@ -1,6 +1,7 @@
 import PopupDialog from "@/shared/components/PopupDialog.tsx";
 import useSettingsStore from "@/shared/store/settingsStore.ts";
 import { useSaveSetting } from "./hooks/useSaveSetting.ts"; 
+import { useLoadSettings } from "./hooks/useLoadSettings.ts";
 
 function Settings() {
     const setShowSettingsDialog = useSettingsStore((state) => state.setShowSettingsDialog);
@@ -15,6 +16,7 @@ function Settings() {
         setThink,
         saveSetting
     } = useSaveSetting();
+    const {isLoading, error} = useLoadSettings();
 
     return (
         <PopupDialog
@@ -36,7 +38,7 @@ function Settings() {
                               id={`provider`} 
                               onChange={(event) => {
                                   setSelectedProvider(event.target.value);
-                                  saveSetting("PROVIDER");
+                                  saveSetting("PROVIDER", event.target.value);
                               }}>
                               { providerList.map((provider) => <option>{provider}</option>) }
                           </select>
@@ -50,7 +52,7 @@ function Settings() {
                               id={`theme`} 
                               onChange={(event) => {
                                   setSelectedTheme(event.target.value);
-                                  saveSetting("THEME");
+                                  saveSetting("THEME", event.target.value);
                               }}>
                               { themesList.map((theme) => <option>{theme}</option>) }
                           </select>
@@ -65,7 +67,7 @@ function Settings() {
                               checked={think} 
                               onChange={(e) => {
                                   setThink(e.target.checked);
-                                  saveSetting("THINK");
+                                  saveSetting("THINK", event.target.checked);
                               }}></input>
                       </div>
                   </div>

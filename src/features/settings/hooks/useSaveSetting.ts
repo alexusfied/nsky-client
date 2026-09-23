@@ -11,13 +11,13 @@ export function useSaveSetting() {
     const think = useSettingsStore((state) => state.think);
     const setThink = useSettingsStore((state) => state.setThink);
 
-    const saveSetting = async (settingName: string) => {
+    const saveSetting = async (settingName: string, updatedValue: any) => {
         if (settingName === "PROVIDER") {
-            saveUserSetting(selectedProvider.toUpperCase(), null, null); 
+            saveUserSetting(updatedValue.toUpperCase(), null, null); 
         } else if (settingName === "THEME") {
-            saveUserSetting(null, selectedTheme.toUpperCase(), null);
+            saveUserSetting(null, updatedValue.toUpperCase(), null);
         } else if (settingName === "THINK") {
-            saveUserSetting(null, null, think);
+            saveUserSetting(null, null, updatedValue);
         }
     }
 
