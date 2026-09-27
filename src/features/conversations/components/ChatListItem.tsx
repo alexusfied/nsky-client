@@ -11,7 +11,7 @@ function ChatListItem({content, isSelected, id}: {content: string, isSelected: b
     const {isChatSelectionMode} = useChatSelection();
 
     return (
-        <div className={"relative flex overflow-hidden"}>
+        <div className={"relative flex"}>
             {isChatSelectionMode && <Checkbox />}
             <li>
                 <div className={`group flex gap-4 w-14/15 hover:bg-primary-variant hover:rounded-md cursor-pointer ${isSelected ? "bg-primary-variant" : ""}`}>
@@ -27,7 +27,7 @@ function ChatListItem({content, isSelected, id}: {content: string, isSelected: b
                     <button
                         className="cursor-pointer hover:bg-on-primary hover:rounded-4xl opacity-0 group-hover:opacity-100 transition-bg duration-300"
                         onClick={() => {
-                            setItemMenuIsVisible((prevState) => !prevState);
+                            setItemMenuIsVisible(!itemMenuIsVisible);
                         }}
                     >
                         <EllipsisVertical color={"#fcfcfc"}/>
