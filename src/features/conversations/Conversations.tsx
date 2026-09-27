@@ -1,6 +1,7 @@
 import {useState} from "react";
 import ChatList from "@/features/conversations/components/ChatList.tsx";
 import {useLoadChats} from "@/features/conversations/hooks/useLoadChats.ts";
+import {useChatSelection} from "./hooks/useChatSelection.ts";
 import useChatStore from "@/shared/store/chatStore.ts";
 import ActionsBar from "@/features/conversations/components/ActionsBar.tsx";
 import ToggleSidebarButton from "./components/ToggleSidebarButton.tsx";

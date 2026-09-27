@@ -5,6 +5,8 @@ import type {IChat} from "@/shared/types/IChat.ts";
 const useChatStore = create<IChatState>((set) => ({
     chats: [],
     selectedChat: null,
+    isChatSelectionMode: false,
+    setIsChatSelectionMode: (value: boolean) => set((state) => ({ isChatSelectionMode: value })),
     setSelectedChat: (id: number | null) => set((state) => ({ selectedChat: id })),
     addChat: (chat) => set((state) => ({ chats: [...state.chats, chat] })),
     removeChat: (removedChat: number) => set((state) => ({ chats: state.chats.filter((chat) => chat.id !== removedChat) })),
