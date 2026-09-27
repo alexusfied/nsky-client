@@ -33,7 +33,7 @@ function Settings() {
                       <div className={`flex justify-between w-[15vw]`}>
                           <label htmlFor={`provider`} className={`font-semibold`}>Provider</label>
                           <select 
-                              defaultValue={selectedProvider} 
+                              value={selectedProvider}
                               name={`provider`} 
                               id={`provider`} 
                               onChange={(event) => {

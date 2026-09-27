@@ -10,6 +10,29 @@ export function useLoadSettings() {
     const setSelectedTheme = useSettingsStore((state) => state.setSelectedTheme);
     const setThink = useSettingsStore((state) => state.setThink);
 
+    const PROVIDER_LABELS: Record<string, string> = {
+        OLLAMA: "Ollama",
+        MISTRAL: "Mistral"
+    }
+    const THEME_LABELS: Record<string, string> = {
+        NSKY: "Nsky"
+    }
+
+    const translateProvider = (provider: string) => {
+        const label = PROVIDER_LABELS[provider];
+
+        if (!label) throw new Error(`Could not translate provider: ${provider}`);
+
+        return label;
+    }
+
+    const translateTheme = (theme: string) => {
+        const label = THEME_LABELS[theme];
+
+        if (!label) throw new Error(`Could not translate theme: ${theme}`);
+
+        return label;
+    }
 
     const loadSettings = async () => {
         setIsLoading(true);
@@ -18,8 +41,8 @@ export function useLoadSettings() {
         try {
             const response = await api.get("/settings");
 
-            setSelectedProvider(response.data.provider);
-            setSelectedTheme(response.data.theme);
+            setSelectedProvider(translateProvider(response.data.provider));
+            setSelectedTheme(translateTheme(response.data.theme));
             setThink(response.data.think);
         } catch (error) {
             const err = error as AxiosError | Error; 
