@@ -1,15 +1,18 @@
 import {CirclePlus} from "lucide-react";
 import useChatStore from "@/shared/store/chatStore.ts";
+import IconButton from "@mui/material/IconButton";
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import Tooltip from "@mui/material/Tooltip";
 
 function AddChatButton() {
     const setSelectedChat = useChatStore((store) => store.setSelectedChat);
 
     return (
-        <button className="cursor-pointer text-on-primary hover:bg-on-primary hover:rounded-md hover:text-primary p-2" onClick={() => {
-            setSelectedChat(null);
-        }}>
-            <CirclePlus />
-        </button>
+        <Tooltip title="Add chat">
+            <IconButton onClick={() => {setSelectedChat(null)}} color="primary">
+                <AddCircleOutlineOutlinedIcon />
+            </IconButton>
+        </Tooltip>
     );
 }
 

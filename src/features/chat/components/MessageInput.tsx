@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {SendHorizonal} from "lucide-react";
+import SendMessageButton from "./SendMessageButton.tsx";
 
 function MessageInput({onMessageSent}: {onMessageSent: (message: string) => void}) {
     const [message, setMessage] = useState("");
@@ -22,13 +23,7 @@ function MessageInput({onMessageSent}: {onMessageSent: (message: string) => void
                 placeholder="Send a message..."
                 autoFocus={true}
             />
-            <button 
-                type="button" 
-                className="text-on-primary cursor-pointer rounded-md p-1 hover:bg-on-primary hover:text-primary relative -left-11"
-                onClick={handleMessageSent}
-            >
-                <SendHorizonal />
-            </button>
+            <SendMessageButton onSend={handleMessageSent} />
         </div>
     );
 }

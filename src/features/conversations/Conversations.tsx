@@ -8,6 +8,8 @@ import BottomBar from "@/features/conversations/components/BottomBar.tsx";
 import AddChatButton from "./components/AddChatButton.tsx";
 import SettingsButton from "./components/SettingsButton.tsx";
 
+import IconButton from "@mui/material/IconButton";
+
 function Conversations() {
     const {isLoading, error} = useLoadChats();
     const chats = useChatStore((state) => state.chats);
@@ -20,7 +22,7 @@ function Conversations() {
                 <div className={`flex flex-col gap-8 overflow-hidden h-full`}>
                     <div className={`flex w-full justify-between sticky`}>
                         <ActionsBar />
-                        <ToggleSidebarButton onHide={() => {setIsHidden(!isHidden)}}/>
+                        <ToggleSidebarButton onHide={() => {setIsHidden(!isHidden)}} sidebarHidden={isHidden}/>
                     </div>
                     <ChatList chats={chats} />
                 </div>
@@ -28,7 +30,7 @@ function Conversations() {
             </section>
             { isHidden &&
                 <section className={`flex flex-col bg-primary h-screen p-4`}>
-                    <ToggleSidebarButton onHide={() => {setIsHidden(!isHidden)}} />
+                    <ToggleSidebarButton onHide={() => {setIsHidden(!isHidden)}} sidebarHidden={isHidden}/>
                     <AddChatButton />
                     <SettingsButton />
                 </section>

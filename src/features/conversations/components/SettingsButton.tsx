@@ -1,15 +1,17 @@
-import {Settings} from "lucide-react";
 import useSettingsStore from "@/shared/store/settingsStore.ts";
+import IconButton from "@mui/material/IconButton";
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import Tooltip from '@mui/material/Tooltip';
 
 function SettingsButton() {
     const setShowSettingsDialog = useSettingsStore((state) => state.setShowSettingsDialog);
 
     return (
-        <button className={`cursor-pointer text-on-primary hover:bg-on-primary hover:rounded-md hover:text-primary p-2`} onClick={() => {
-            setShowSettingsDialog(true);
-        }}>
-            <Settings />
-        </button>
+        <Tooltip title="Show settings">
+            <IconButton onClick={() => {setShowSettingsDialog(true)}} color="primary">
+                <SettingsOutlinedIcon />
+            </IconButton>
+        </Tooltip>
     );
 }
 
