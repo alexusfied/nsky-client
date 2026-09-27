@@ -1,4 +1,3 @@
-import {CirclePlus} from "lucide-react";
 import useChatStore from "@/shared/store/chatStore.ts";
 import IconButton from "@mui/material/IconButton";
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';

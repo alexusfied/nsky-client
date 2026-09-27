@@ -1,4 +1,6 @@
 import {X} from "lucide-react";
+import IconButton from "@mui/material/IconButton";
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 interface IPopupDialogProps {
     onConfirm: () => void,
@@ -15,9 +17,9 @@ function PopupDialog({onConfirm, onCancel, children, hideButtons}: IPopupDialogP
             <div className={"fixed top-1/2 left-1/2 p-4 bg-primary rounded-md flex flex-col gap-8 z-40"}>
                 { hideButtons &&
                   <div className={`flex w-full justify-start`}>
-                    <button className={`cursor-pointer text-on-primary hover:text-white`} onClick={() => {onCancel()}}>
-                      <X />
-                    </button>
+                      <IconButton onClick={onCancel} color="primary">
+                          <CloseOutlinedIcon />
+                      </IconButton>
                   </div>
                 }
                 <div className={"text-white"}>{children}</div>

@@ -3,6 +3,10 @@ import useSettingsStore from "@/shared/store/settingsStore.ts";
 import { useSaveSetting } from "./hooks/useSaveSetting.ts"; 
 import { useLoadSettings } from "./hooks/useLoadSettings.ts";
 
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import Switch from "@mui/material/Switch";
+
 function Settings() {
     const setShowSettingsDialog = useSettingsStore((state) => state.setShowSettingsDialog);
     const {
@@ -26,49 +30,44 @@ function Settings() {
               }}
               hideButtons={true}
               children={
-                  <div className={`flex flex-col gap-3`}>
+                  <div className={`flex flex-col gap-4`}>
                       {
                           // TODO: Selection rows should also be their own component 
                       }  
-                      <div className={`flex justify-between w-[15vw]`}>
+                      <div className={`flex justify-between w-[15vw] items-center`}>
                           <label htmlFor={`provider`} className={`font-semibold`}>Provider</label>
-                          <select 
+                          <Select 
                               value={selectedProvider}
-                              name={`provider`} 
                               id={`provider`} 
                               onChange={(event) => {
-                                  setSelectedProvider(event.target.value);
-                                  saveSetting("PROVIDER", event.target.value);
+                                  setSelectedProvider(event.target.value as string);
+                                  saveSetting("PROVIDER", event.target.value as string);
                               }}>
-                              { providerList.map((provider) => <option>{provider}</option>) }
-                          </select>
+                              { providerList.map((provider) => <MenuItem value={provider}>{provider}</MenuItem>) }
+                          </Select>
                       </div>
-                      <hr />
-                      <div className={`flex justify-between w-[15vw]`}>
+                      <div className={`flex justify-between w-[15vw] items-center`}>
                           <label htmlFor={`theme`} className={`font-semibold`}>Theme</label>
-                          <select 
-                              defaultValue={selectedTheme} 
-                              name={`theme`} 
+                          <Select 
+                              value={selectedTheme} 
                               id={`theme`} 
                               onChange={(event) => {
-                                  setSelectedTheme(event.target.value);
-                                  saveSetting("THEME", event.target.value);
+                                  setSelectedTheme(event.target.value as string);
+                                  saveSetting("THEME", event.target.value as string);
                               }}>
-                              { themesList.map((theme) => <option>{theme}</option>) }
-                          </select>
+                              { themesList.map((theme) => <MenuItem value={theme}>{theme}</MenuItem>) }
+                          </Select>
                       </div>
-                      <hr />
                       <div className={`flex justify-between w-[15vw]`}>
                           <label htmlFor={`think`} className={`font-semibold`}>Think</label>
-                          <input 
-                              type="checkbox" 
-                              id="think" 
-                              name="think" 
-                              checked={think} 
+                          <Switch 
+                              checked={think}
                               onChange={(e) => {
                                   setThink(e.target.checked);
-                                  saveSetting("THINK", event.target.checked);
-                              }}></input>
+                                  saveSetting("THINK", e.target.checked);
+                              }}
+                              slotProps={{ input: { 'aria-label': 'controlled' } }}
+                          />
                       </div>
                   </div>
               }

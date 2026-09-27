@@ -210,9 +210,6 @@
   .right-0 {
     right: calc(var(--spacing) * 0);
   }
-  .-left-11 {
-    left: calc(var(--spacing) * -11);
-  }
   .left-0 {
     left: calc(var(--spacing) * 0);
   }
@@ -277,6 +274,9 @@
   .flex-row {
     flex-direction: row;
   }
+  .items-center {
+    align-items: center;
+  }
   .items-start {
     align-items: flex-start;
   }
@@ -339,9 +339,6 @@
   }
   .bg-red-400 {
     background-color: var(--color-red-400);
-  }
-  .p-1 {
-    padding: calc(var(--spacing) * 1);
   }
   .p-2 {
     padding: calc(var(--spacing) * 2);
@@ -454,13 +451,6 @@
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-red-700);
-      }
-    }
-  }
-  .hover\:text-primary {
-    &:hover {
-      @media (hover: hover) {
-        color: var(--color-primary);
       }
     }
   }
