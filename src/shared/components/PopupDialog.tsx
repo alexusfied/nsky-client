@@ -14,23 +14,21 @@ function PopupDialog({onConfirm, onCancel, children, hideButtons}: IPopupDialogP
     return (
         <>
             <div className={"w-screen h-screen z-30 fixed top-0 left-0 backdrop-blur-sm opacity-50 bg-black"}></div>
-            <ClickAwayListener onClickAway={onCancel}>
-                <div className={"fixed top-1/2 left-1/2 p-4 bg-primary rounded-md flex flex-col gap-8 z-40"}>
-                    { hideButtons &&
-                      <div className={`flex w-full justify-start`}>
-                          <IconButton onClick={onCancel} color="primary">
-                              <CloseOutlinedIcon />
-                          </IconButton>
-                      </div>
-                    }
-                    <div className={"text-white"}>{children}</div>
-                    { !hideButtons && <div className={"flex gap-3"}>
-                      <button onClick={onCancel} className={"bg-gray-500 p-2 rounded-md cursor-pointer hover:bg-gray-700"}>Cancel</button>
-                      <button onClick={onConfirm} className={"bg-red-400 p-2 rounded-md cursor-pointer hover:bg-red-700"}>Confirm</button>
-                    </div>
-                    }
+            <div className={"fixed top-1/2 left-1/2 p-4 bg-primary rounded-md flex flex-col gap-8 z-40"}>
+                { hideButtons &&
+                  <div className={`flex w-full justify-start`}>
+                      <IconButton onClick={onCancel} color="primary">
+                          <CloseOutlinedIcon />
+                      </IconButton>
+                  </div>
+                }
+                <div className={"text-white"}>{children}</div>
+                { !hideButtons && <div className={"flex gap-3"}>
+                  <button onClick={onCancel} className={"bg-gray-500 p-2 rounded-md cursor-pointer hover:bg-gray-700"}>Cancel</button>
+                  <button onClick={onConfirm} className={"bg-red-400 p-2 rounded-md cursor-pointer hover:bg-red-700"}>Confirm</button>
                 </div>
-            </ClickAwayListener>
+                }
+            </div>
         </>
     );
 }
