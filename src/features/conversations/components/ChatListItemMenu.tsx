@@ -67,7 +67,6 @@ function ChatListItemMenu({chatId, setItemMenuIsVisible, itemMenuIsVisible, chat
             {showConfirmDeletePopup && <PopupDialog
               onConfirm={async () => {
                   await deleteChat(chatId);
-                  removeChat(chatId);
 
                   if (selectedChatId === chatId) setSelectedChat(null);
 
