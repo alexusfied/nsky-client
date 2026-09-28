@@ -1,6 +1,5 @@
 import IconButton from "@mui/material/IconButton";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
 
 interface IPopupDialogProps {
     onConfirm: () => void,
