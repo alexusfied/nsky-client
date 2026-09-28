@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {api} from "@/shared/api/axiosInstance.ts";
+import {deleteChat as deleteChatApi, deleteChats as deleteChatsApi} from "../services/chatsApi";
 import type {AxiosError} from "axios";
 
 export function useDeleteChat() {
@@ -11,12 +11,28 @@ export function useDeleteChat() {
         setError(null);
 
         try {
-            const response = await api.delete(`/chats/${chatId}/delete`);
+            await deleteChatApi(chatId); 
         } catch (error) {
             const err = error as Error | AxiosError;
             setError(err.message);
+        } finally {
+            setIsLoading(false);
         }
     }
 
-    return { isLoading, error, deleteChat }
+    const deleteChats = async (chatIds: number[]) => {
+        setIsLoading(true);
+        setError(null);
+
+        try {
+            await deleteChatsApi(chatIds);
+        } catch (error) {
+            const err = error as Error | AxiosError;
+            setError(err.message);
+        } finally {
+            setIsLoading(false);
+        }
+    }
+
+    return { isLoading, error, deleteChat, deleteChats }
 }

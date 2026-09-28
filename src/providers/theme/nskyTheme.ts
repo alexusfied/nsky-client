@@ -20,6 +20,9 @@ export const nskyTheme = createTheme({
       primary: '#FFFFFF',
       secondary: 'rgba(255,255,255,0.7)',
     },
+    warning: {
+      main: '#e25f61'
+    },
     divider: 'rgba(255,255,255,0.12)',
   },
 });

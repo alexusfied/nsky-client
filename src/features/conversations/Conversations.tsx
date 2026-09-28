@@ -1,15 +1,12 @@
 import {useState} from "react";
 import ChatList from "@/features/conversations/components/ChatList.tsx";
 import {useLoadChats} from "@/features/conversations/hooks/useLoadChats.ts";
-import {useChatSelection} from "./hooks/useChatSelection.ts";
 import useChatStore from "@/shared/store/chatStore.ts";
 import ActionsBar from "@/features/conversations/components/ActionsBar.tsx";
 import ToggleSidebarButton from "./components/ToggleSidebarButton.tsx";
 import BottomBar from "@/features/conversations/components/BottomBar.tsx";
 import AddChatButton from "./components/AddChatButton.tsx";
 import SettingsButton from "./components/SettingsButton.tsx";
-
-import IconButton from "@mui/material/IconButton";
 
 function Conversations() {
     const {isLoading, error} = useLoadChats();

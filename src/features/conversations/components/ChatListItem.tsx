@@ -8,11 +8,19 @@ import Checkbox from "@mui/material/Checkbox";
 function ChatListItem({content, isSelected, id}: {content: string, isSelected: boolean, id: number}) {
     const setSelectedChat = useChatStore((store) => store.setSelectedChat);
     const [itemMenuIsVisible, setItemMenuIsVisible] = useState(false);
-    const {isChatSelectionMode} = useChatSelection();
+    const {isChatSelectionMode, addSelectedChat, removeSelectedChat} = useChatSelection();
+
+    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.checked) {
+            addSelectedChat(id);
+        } else {
+            removeSelectedChat(id);
+        }
+    }
 
     return (
         <div className={"relative flex"}>
-            {isChatSelectionMode && <Checkbox />}
+            {isChatSelectionMode && <Checkbox onChange={handleCheckboxChange}/>}
             <li>
                 <div className={`group flex gap-4 w-14/15 hover:bg-primary-variant hover:rounded-md cursor-pointer ${isSelected ? "bg-primary-variant" : ""}`}>
                     <button

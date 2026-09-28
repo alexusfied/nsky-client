@@ -2,6 +2,12 @@ import type {IChat} from "@/shared/types/IChat.ts";
 
 interface IChatState {
     chats: IChat[],
+    selectedChats: number[],
+    addSelectedChat: (chatId: number) => void,
+    removeSelectedChat: (chatId: number) => void,
+    clearSelectedChats: () => void,
+    isChatSelectionMode: boolean,
+    setIsChatSelectionMode: (value: boolean) => void,
     selectedChat: number | null,
     setSelectedChat: (id: number | null) => void,
     removeChat: (chat: number) => void,
