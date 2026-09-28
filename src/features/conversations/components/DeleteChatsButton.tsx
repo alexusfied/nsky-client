@@ -4,12 +4,18 @@ import useChatSelection from "../hooks/useChatSelection";
 import { useDeleteChat } from "../hooks/useDeleteChat";
 
 function DeleteChatsButton() {
-    const {selectedChats} = useChatSelection();
+    const {selectedChats, clearSelectedChats, setIsChatSelectionMode} = useChatSelection();
     const {deleteChats} = useDeleteChat();
+
+    const handleClick = () => {
+        deleteChats(selectedChats);
+        clearSelectedChats();
+        setIsChatSelectionMode(false);
+    }
 
     return(
         <Tooltip title="Delete selected chats">
-            <IconButton color="warning" disabled={selectedChats.length === 0 ? true : false} onClick={() => {deleteChats(selectedChats)}}>
+            <IconButton color="warning" disabled={selectedChats.length === 0 ? true : false} onClick={handleClick}>
                 <DeleteOutlineOutlinedIcon />
             </IconButton>
         </Tooltip> 

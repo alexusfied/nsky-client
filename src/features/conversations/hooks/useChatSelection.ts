@@ -6,6 +6,7 @@ export function useChatSelection() {
     const selectedChats = useChatStore((state) => state.selectedChats);
     const addSelectedChat = useChatStore((state) => state.addSelectedChat);
     const removeSelectedChat = useChatStore((state) => state.removeSelectedChat);
+    const clearSelectedChats = useChatStore((state) => state.clearSelectedChats);
 
 
     return {
@@ -13,7 +14,8 @@ export function useChatSelection() {
         setIsChatSelectionMode,
         selectedChats,
         addSelectedChat,
-        removeSelectedChat
+        removeSelectedChat,
+        clearSelectedChats
     };
 }
 
