@@ -1,5 +1,4 @@
 import { useState } from "react";
-import {SendHorizonal} from "lucide-react";
 import SendMessageButton from "./SendMessageButton.tsx";
 
 function MessageInput({onMessageSent}: {onMessageSent: (message: string) => void}) {
@@ -18,12 +17,12 @@ function MessageInput({onMessageSent}: {onMessageSent: (message: string) => void
                 onChange={(e) => {setMessage(e.target.value)}}
                 value={message}
                 onKeyDown={(e) => {
-                    if (e.key === "Enter") handleMessageSent();
+                    if (e.key === "Enter" && message !== "") handleMessageSent();
                 }}
                 placeholder="Send a message..."
                 autoFocus={true}
             />
-            <SendMessageButton onSend={handleMessageSent} />
+            <SendMessageButton onSend={handleMessageSent} message={message}/>
         </div>
     );
 }
