@@ -8,6 +8,8 @@ export function useDeleteChat() {
     const [error, setError] = useState<string | null>(null);
     const removeChat = useChatStore((state) => state.removeChat);
     const removeChats = useChatStore((state) => state.removeChats);
+    const setSelectedChat = useChatStore((state) => state.setSelectedChat);
+    const selectedChat = useChatStore((state) => state.selectedChat);
 
     const deleteChat = async (chatId: number) => {
         setIsLoading(true);
@@ -16,6 +18,8 @@ export function useDeleteChat() {
         try {
             await deleteChatApi(chatId);
             removeChat(chatId);
+
+            if (selectedChat === chatId) setSelectedChat(null);
         } catch (error) {
             const err = error as Error | AxiosError;
             setError(err.message);
@@ -31,6 +35,8 @@ export function useDeleteChat() {
         try {
             await deleteChatsApi(chatIds);
             removeChats(chatIds);
+
+            if (selectedChat !== null && chatIds.includes(selectedChat)) setSelectedChat(null);
         } catch (error) {
             const err = error as Error | AxiosError;
             setError(err.message);
