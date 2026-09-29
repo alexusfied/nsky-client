@@ -41,7 +41,6 @@ function Settings() {
                               id={`provider`} 
                               onChange={async (event) => {
                                   await saveSetting("PROVIDER", event.target.value as string);
-                                  setSelectedProvider(event.target.value as string);
                               }}>
                               { providerList.map((provider) => <MenuItem value={provider}>{provider}</MenuItem>) }
                           </Select>
@@ -53,7 +52,6 @@ function Settings() {
                               id={`theme`} 
                               onChange={async (event) => {
                                   await saveSetting("THEME", event.target.value as string);
-                                  setSelectedTheme(event.target.value as string);
                               }}>
                               { themesList.map((theme) => <MenuItem value={theme}>{theme}</MenuItem>) }
                           </Select>
@@ -64,7 +62,6 @@ function Settings() {
                               checked={think}
                               onChange={async (e) => {
                                   await saveSetting("THINK", e.target.checked);
-                                  setThink(e.target.checked);
                               }}
                               slotProps={{ input: { 'aria-label': 'controlled' } }}
                           />
