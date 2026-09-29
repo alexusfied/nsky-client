@@ -1,5 +1,7 @@
 import useSettingsStore from "@/shared/store/settingsStore.ts";
 import { saveUserSetting } from "../services/settingsApi.ts";
+import { useAlert } from "@/shared/hooks/useAlert.ts";
+import type { ApiError } from "@/shared/api/errors.ts";
 
 export function useSaveSetting() {
     const selectedProvider = useSettingsStore((state) => state.selectedProvider);
@@ -10,14 +12,21 @@ export function useSaveSetting() {
     const setSelectedTheme = useSettingsStore((state) => state.setSelectedTheme);
     const think = useSettingsStore((state) => state.think);
     const setThink = useSettingsStore((state) => state.setThink);
+    
+    const { displayAlert } = useAlert();
 
     const saveSetting = async (settingName: string, updatedValue: any) => {
         if (settingName === "PROVIDER") {
-            saveUserSetting(updatedValue.toUpperCase(), null, null); 
+            try {
+                await saveUserSetting(updatedValue.toUpperCase(), null, null); 
+            } catch (error) {
+                const err = error as ApiError;
+                displayAlert("error", err.message);
+            }
         } else if (settingName === "THEME") {
-            saveUserSetting(null, updatedValue.toUpperCase(), null);
+            await saveUserSetting(null, updatedValue.toUpperCase(), null);
         } else if (settingName === "THINK") {
-            saveUserSetting(null, null, updatedValue);
+            await saveUserSetting(null, null, updatedValue);
         }
     }
 

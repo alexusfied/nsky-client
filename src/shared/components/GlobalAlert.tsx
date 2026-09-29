@@ -2,10 +2,10 @@ import { Snackbar, Alert } from "@mui/material"
 import { useAlert } from "../hooks/useAlert";
 
 function GlobalAlert() {
-    const { showAlert, severity, message } = useAlert();
+    const { showAlert, severity, message, setShowAlert } = useAlert();
 
     return(
-        <Snackbar autoHideDuration={6000} anchorOrigin={{ vertical: "top", horizontal: "right" }} open={showAlert}>
+        <Snackbar autoHideDuration={6000} anchorOrigin={{ vertical: "top", horizontal: "right" }} open={showAlert} onClose={() => {setShowAlert(false)}}>
             <Alert severity={severity}>{message}</Alert>
         </Snackbar> 
     );

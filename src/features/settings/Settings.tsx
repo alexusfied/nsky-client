@@ -39,9 +39,9 @@ function Settings() {
                           <Select 
                               value={selectedProvider}
                               id={`provider`} 
-                              onChange={(event) => {
+                              onChange={async (event) => {
+                                  await saveSetting("PROVIDER", event.target.value as string);
                                   setSelectedProvider(event.target.value as string);
-                                  saveSetting("PROVIDER", event.target.value as string);
                               }}>
                               { providerList.map((provider) => <MenuItem value={provider}>{provider}</MenuItem>) }
                           </Select>
@@ -51,9 +51,9 @@ function Settings() {
                           <Select 
                               value={selectedTheme} 
                               id={`theme`} 
-                              onChange={(event) => {
+                              onChange={async (event) => {
+                                  await saveSetting("THEME", event.target.value as string);
                                   setSelectedTheme(event.target.value as string);
-                                  saveSetting("THEME", event.target.value as string);
                               }}>
                               { themesList.map((theme) => <MenuItem value={theme}>{theme}</MenuItem>) }
                           </Select>
@@ -62,9 +62,9 @@ function Settings() {
                           <label htmlFor={`think`} className={`font-semibold`}>Think</label>
                           <Switch 
                               checked={think}
-                              onChange={(e) => {
+                              onChange={async (e) => {
+                                  await saveSetting("THINK", e.target.checked);
                                   setThink(e.target.checked);
-                                  saveSetting("THINK", e.target.checked);
                               }}
                               slotProps={{ input: { 'aria-label': 'controlled' } }}
                           />

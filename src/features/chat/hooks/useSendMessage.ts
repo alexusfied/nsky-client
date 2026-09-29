@@ -3,6 +3,7 @@ import {streamUserMessage} from "@/features/chat/services/messageApi.ts";
 import useMessageStore from "../../../shared/store/messageStore.ts";
 import useChatStore from "@/shared/store/chatStore.ts";
 import useSettingsStore from "@/shared/store/settingsStore.ts";
+import { useAlert } from "@/shared/hooks/useAlert.ts";
 
 export function useSendMessage() {
     const [isStreaming, setIsStreaming] = useState(false);
@@ -16,6 +17,8 @@ export function useSendMessage() {
     const setSelectedChat = useChatStore((store) => store.setSelectedChat);
     const selectedChatId = useChatStore((store) => store.selectedChat);
     const selectedProvider = useSettingsStore((store) => store.selectedProvider);
+
+    const { displayAlert } = useAlert();
 
     const sendMessage = async (content: string) => {
         setIsStreaming(true);
@@ -55,6 +58,7 @@ export function useSendMessage() {
         } catch (err: any) {
             console.log(err.message);
             setError(err.message || "Streaming failed");
+            displayAlert("error", err.message);
         } finally {
             setIsStreaming(false);
         }
