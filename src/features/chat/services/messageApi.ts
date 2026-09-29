@@ -16,6 +16,7 @@ export async function streamUserMessage(
         },
         body: JSON.stringify({ chatId: chatId, prompt: content, provider: provider }),
         onerror(err) {
+            ctrl.abort();
             throw new Error("Error in message streaming: " + err);
         },
         onmessage(eventMsg) {

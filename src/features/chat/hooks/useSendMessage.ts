@@ -56,11 +56,11 @@ export function useSendMessage() {
                 setSelectedChat(newChatId);
             }
         } catch (err: any) {
-            console.log(err.message);
             setError(err.message || "Streaming failed");
             displayAlert("error", err.message);
         } finally {
             setIsStreaming(false);
+            setIsLoadingLlmResponse(false);
         }
     }
 

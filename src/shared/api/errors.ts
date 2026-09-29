@@ -25,6 +25,8 @@ export function toApiError(err: unknown): ApiError {
         }
 
         return new ApiError("network");
+    } else if (err instanceof Error) {
+    
     }
 
     return new ApiError("unknown");
