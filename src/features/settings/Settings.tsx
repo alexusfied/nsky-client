@@ -6,18 +6,16 @@ import { useLoadSettings } from "./hooks/useLoadSettings.ts";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Switch from "@mui/material/Switch";
+import { Typography } from "@mui/material";
 
 function Settings() {
     const setShowSettingsDialog = useSettingsStore((state) => state.setShowSettingsDialog);
     const {
         selectedProvider,
-        setSelectedProvider,
         providerList,
         themesList,
         selectedTheme,
-        setSelectedTheme,
         think,
-        setThink,
         saveSetting
     } = useSaveSetting();
     const {isLoading, error} = useLoadSettings();
@@ -30,6 +28,7 @@ function Settings() {
               }}
               hideButtons={true}
               children={
+                  error ? <Typography variant="body1">Could not load settings</Typography> :
                   <div className={`flex flex-col gap-4`}>
                       {
                           // TODO: Selection rows should also be their own component 

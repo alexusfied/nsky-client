@@ -25,7 +25,7 @@ function Conversations() {
                         <ToggleSidebarButton onHide={() => {setIsHidden(!isHidden)}} sidebarHidden={isHidden}/>
                     </div>
                     {error 
-                        ? <Typography variant="body1">Chats can't be loaded</Typography> 
+                        ? <Typography variant="body1">Could not load chats</Typography> 
                         : (isLoading ? <ChatListSkeleton /> : <ChatList chats={chats} />) }
                 </div>
                 <BottomBar />
