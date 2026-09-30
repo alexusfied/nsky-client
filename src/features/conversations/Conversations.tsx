@@ -8,6 +8,7 @@ import BottomBar from "@/features/conversations/components/BottomBar.tsx";
 import AddChatButton from "./components/AddChatButton.tsx";
 import SettingsButton from "./components/SettingsButton.tsx";
 import ChatListSkeleton from "./components/ChatListSkeleton.tsx";
+import { Typography } from "@mui/material";
 
 function Conversations() {
     const {isLoading, error} = useLoadChats();
@@ -23,7 +24,9 @@ function Conversations() {
                         <ActionsBar />
                         <ToggleSidebarButton onHide={() => {setIsHidden(!isHidden)}} sidebarHidden={isHidden}/>
                     </div>
-                    {isLoading ? <ChatListSkeleton /> : <ChatList chats={chats} /> }
+                    {error 
+                        ? <Typography variant="body1">Chats can't be loaded</Typography> 
+                        : (isLoading ? <ChatListSkeleton /> : <ChatList chats={chats} />) }
                 </div>
                 <BottomBar />
             </section>

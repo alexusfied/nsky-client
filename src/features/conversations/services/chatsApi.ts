@@ -1,5 +1,6 @@
+import { toApiError } from "@/shared/api/errors";
 import {api} from "../../../shared/api/axiosInstance";
-import {AxiosError} from "axios";
+import {AxiosError, type AxiosResponse} from "axios";
 
 export async function deleteChat(chatId: number) {
     try {
@@ -15,6 +16,15 @@ export async function deleteChats(chatIds: number[]) {
         const response = await api.delete("/chats/delete", {data: JSON.stringify({chatIds: chatIds})});
     } catch (error) {
         const err = error as Error | AxiosError;
-        throw new AxiosError(err.message);
+        throw toApiError(err)
+    }
+}
+
+export async function loadAllChats(): Promise<AxiosResponse> {
+    try {
+        return await api.get("/chats/all"); 
+    } catch (error) {
+        const err = error as Error | AxiosError;
+        throw toApiError(err);
     }
 }
