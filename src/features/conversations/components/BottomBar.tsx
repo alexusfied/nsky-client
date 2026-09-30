@@ -1,10 +1,13 @@
 import SettingsButton from "@/features/conversations/components/SettingsButton.tsx";
+import { Stack } from "@mui/material";
 
 function BottomBar() {
     return (
-        <div className={`flex ps-2`}>
+        <Stack direction="row" sx={{
+            alignItems: "flex-start"
+        }}>
             <SettingsButton />
-        </div>
+        </Stack>
     );
 }
 
