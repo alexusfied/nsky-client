@@ -44,6 +44,7 @@ export function useSaveSetting() {
                 handleError(error);
             }
         }
+        displayAlert("success", "Saved setting successfully");
     }
 
     return {
