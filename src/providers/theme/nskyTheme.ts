@@ -1,5 +1,4 @@
 import { createTheme } from "@mui/material/styles";
-import type { ThemeOptions } from '@mui/material/styles';
 
 export const nskyTheme = createTheme({
   palette: {
@@ -25,6 +24,11 @@ export const nskyTheme = createTheme({
     },
     divider: 'rgba(255,255,255,0.12)',
   },
+  typography: {
+    body1: {
+      color: 'white'
+    }
+  }
 });
 
 export default nskyTheme;

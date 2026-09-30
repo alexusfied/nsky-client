@@ -1,4 +1,3 @@
-import type {IChat} from "@/shared/types/IChat.ts";
 import {api} from "@/shared/api/axiosInstance.ts";
 
 import {useEffect, useState} from "react";
@@ -20,6 +19,8 @@ export function useLoadChats() {
         } catch (error) {
             const err = error as Error | AxiosError;
             setError(err.message);
+        } finally {
+            setIsLoading(false);
         }
     }
 
