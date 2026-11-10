@@ -11,9 +11,6 @@ function ChatPage() {
         <div className="flex flex-row h-screen">
             <GlobalAlert />
             <Conversations />
-            { 
-                // TODO: Move settings dialog to its own component 
-            }
             <Chat />
             { showSettingsDialog && <Settings /> }
         </div>

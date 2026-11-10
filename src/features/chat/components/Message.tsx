@@ -6,7 +6,7 @@ function Message({content, type}: {content: string, type: string}) {
     const userStyleTextColor = "p-4 rounded-md bg-primary";
 
     return (
-        <div className={`${type === "user" ? userTypeStyles : llmTypeStyles} flex w-full`}>
+        <div className={`${type === "user" ? userTypeStyles : llmTypeStyles} flex`}>
             <div className={`${type === "user" ? userStyleTextColor : ""} text-white`}>
                 <Markdown>{content}</Markdown>
             </div>

@@ -13,8 +13,8 @@ function Chat() {
     const {chatRef} = useAutoScroll();
 
     return (
-        <section className="flex justify-center h-screen w-full bg-primary-variant">
-            <div className="flex flex-col gap-4 w-full pt-4 pb-40 pl-60 pr-60 overflow-y-auto" ref={chatRef}>
+        <section className="flex justify-center h-screen bg-primary-variant">
+            <div className="flex flex-col gap-4 pt-4 pb-40 ps-50 pe-50" ref={chatRef}>
                 {
                     messages.map((message, id) => <Message content={message.content} type={message.role} key={id}/>)
                 }
