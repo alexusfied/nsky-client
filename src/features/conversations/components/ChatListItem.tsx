@@ -21,28 +21,26 @@ function ChatListItem({content, isSelected, id}: {content: string, isSelected: b
     return (
         <div className={"relative flex"}>
             {isChatSelectionMode && <Checkbox onChange={handleCheckboxChange}/>}
-            <li>
-                <div className={`group flex gap-4 w-14/15 hover:bg-primary-variant hover:rounded-md cursor-pointer ${isSelected ? "bg-primary-variant" : ""}`}>
-                    <button
-                        className={`text-white p-2 cursor-pointer truncate w-full flex justify-start`}
-                        onClick={() => {
-                            setSelectedChat(id);
-                        }}
-                    >
-                        {content}
-                    </button>
-                    { !isChatSelectionMode &&
-                    <button
-                        className="cursor-pointer hover:bg-on-primary hover:rounded-4xl opacity-0 group-hover:opacity-100 transition-bg duration-300"
-                        onClick={() => {
-                            setItemMenuIsVisible(!itemMenuIsVisible);
-                        }}
-                    >
-                        <EllipsisVertical color={"#fcfcfc"}/>
-                    </button>
-                    }
-                </div>
-            </li>
+            <div className={`group flex gap-4 w-14/15 hover:bg-primary-variant hover:rounded-md cursor-pointer ${isSelected ? "bg-primary-variant" : ""}`}>
+                <button
+                    className={`text-white p-2 cursor-pointer truncate w-full flex justify-start`}
+                    onClick={() => {
+                        setSelectedChat(id);
+                    }}
+                >
+                    {content}
+                </button>
+                { !isChatSelectionMode &&
+                <button
+                    className="cursor-pointer hover:bg-on-primary hover:rounded-4xl opacity-0 group-hover:opacity-100 transition-bg duration-300"
+                    onClick={() => {
+                        setItemMenuIsVisible(!itemMenuIsVisible);
+                    }}
+                >
+                    <EllipsisVertical color={"#fcfcfc"}/>
+                </button>
+                }
+            </div>
             {itemMenuIsVisible && <ChatListItemMenu
                 chatId={id}
                 setItemMenuIsVisible={setItemMenuIsVisible}

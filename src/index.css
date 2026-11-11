@@ -240,6 +240,9 @@
   .flex {
     display: flex;
   }
+  .hidden {
+    display: none;
+  }
   .table {
     display: table;
   }
@@ -282,6 +285,9 @@
   .w-1\/5 {
     width: calc(1 / 5 * 100%);
   }
+  .w-2\/5 {
+    width: calc(2 / 5 * 100%);
+  }
   .w-3\/4 {
     width: calc(3 / 4 * 100%);
   }
@@ -305,6 +311,9 @@
   }
   .w-screen {
     width: 100vw;
+  }
+  .grow {
+    flex-grow: 1;
   }
   .border-collapse {
     border-collapse: collapse;

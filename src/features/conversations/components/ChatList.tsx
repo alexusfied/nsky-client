@@ -1,18 +1,18 @@
 import type {IChat} from "@/shared/types/IChat.ts";
 import ChatListItem from "./ChatListItem.tsx";
 import useChatStore from "@/shared/store/chatStore.ts";
-import { Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 
 function ChatList({chats}: {chats: IChat[]}) {
     const selectedChatId = useChatStore((store) => store.selectedChat);
 
     return (
-        <ul className={`overflow-scroll h-full w-full`}>
+        <Stack direction="column" sx={{overflow: "hidden"}}>
             {chats.length === 0 
                 ? <Typography variant="body1">You have no chats yet</Typography> 
                 : chats.map(chat => <ChatListItem content={chat.title} isSelected={chat.id === selectedChatId} id={chat.id}/>)
             }
-        </ul>
+        </Stack>
     );
 }
 
