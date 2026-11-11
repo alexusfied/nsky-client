@@ -8,7 +8,7 @@ function ChatPage() {
     const showSettingsDialog = useSettingsStore((state) => state.showSettingsDialog);
 
     return (
-        <div className="flex flex-row h-screen">
+        <div className="flex">
             <GlobalAlert />
             <Conversations />
             <Chat />

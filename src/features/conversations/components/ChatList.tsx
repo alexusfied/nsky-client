@@ -7,7 +7,7 @@ function ChatList({chats}: {chats: IChat[]}) {
     const selectedChatId = useChatStore((store) => store.selectedChat);
 
     return (
-        <ul className={`overflow-scroll h-full`}>
+        <ul className={`overflow-scroll h-full w-full`}>
             {chats.length === 0 
                 ? <Typography variant="body1">You have no chats yet</Typography> 
                 : chats.map(chat => <ChatListItem content={chat.title} isSelected={chat.id === selectedChatId} id={chat.id}/>)
