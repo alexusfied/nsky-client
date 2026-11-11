@@ -19,7 +19,7 @@ function Conversations() {
     return (
         <>
             <section className={`flex flex-col gap-8 justify-between bg-primary h-screen w-1/5 p-4 transition ${isHidden ? "-translate-x-full absolute" : ""}`}>
-                <div className={`flex flex-col gap-8 h-full`}>
+                <div className={`flex flex-col gap-8 h-11/12`}>
                     <div className={`flex w-full justify-between`}>
                         <ActionsBar />
                         <ToggleSidebarButton onHide={() => {setIsHidden(!isHidden)}} sidebarHidden={isHidden}/>

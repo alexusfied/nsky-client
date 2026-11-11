@@ -4,7 +4,7 @@ import { Stack } from "@mui/material";
 function BottomBar() {
     return (
         <Stack direction="row" sx={{
-            alignItems: "flex-start"
+            alignItems: "flex-start",
         }}>
             <SettingsButton />
         </Stack>
