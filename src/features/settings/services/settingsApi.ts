@@ -13,7 +13,7 @@ export async function loadUserSettings(): Promise<AxiosResponse> {
 
 export async function saveUserSetting(provider: string | null, theme: string | null, think: boolean | null) {
     try {
-        const response = await api.post("/settings/save", {data: JSON.stringify({ provider: provider, theme: theme, think: think })});
+        const response = await api.post("/settings/save", { provider: provider, theme: theme, think: think });
     } catch (error) {
        const err = error as Error | AxiosError;
        throw toApiError(err);
