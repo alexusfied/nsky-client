@@ -18,7 +18,10 @@ function MessageInput({onMessageSent}: {onMessageSent: (message: string) => void
                 onChange={(e) => {setMessage(e.target.value)}}
                 value={message}
                 onKeyDown={(e) => {
-                    if (e.key === "Enter" && message !== "") handleMessageSent();
+                    if (e.key === "Enter" && message !== "") {
+                        e.preventDefault();
+                        handleMessageSent();
+                    }
                 }}
                 placeholder="Send a message..."
                 autoFocus={true}
